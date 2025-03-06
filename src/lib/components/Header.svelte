@@ -1,5 +1,10 @@
-<script>
+<script lang="ts">
+  import type { TypeNavigationSkeleton } from '$lib/clients/content_types'
+  import type { Entry } from 'contentful'
+
   import Icon from './Icon.svelte'
+
+  const { navigations }: { navigations: {[id: string]: Entry<TypeNavigationSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>} } = $props()
 
   let scrollY = $state(0)
   let menuOpen = $state(false)
@@ -32,9 +37,14 @@
 
 <nav class="menu padded flex flex--column" class:open={menuOpen}>
   <ul class="list--nostyle">
-    <li><a href="/" class="h4" onclick={closeMenu}>Accueil</a></li>
-    <li><a href="/" class="h4" onclick={closeMenu}>Paysages</a></li>
-    <li><a href="/" class="h4" onclick={closeMenu}>Patrimoine</a></li>
+    {#each navigations['menu'].fields.liens as lien}
+      <li><a href={lien.fields.route} class="h4" onclick={closeMenu}>{lien.fields.titre}</a></li>
+    {/each}
+  </ul>
+  <ul class="list--nostyle flex flex--gapped">
+    {#each navigations['social'].fields.liens as lien}
+      <li><a href={lien.fields.route} onclick={closeMenu}>{lien.fields.titre}</a></li>
+    {/each}
   </ul>
 </nav>
 
@@ -89,18 +99,31 @@
 
     ul {
       width: 100%;
-      margin-top: auto;
+
+      &:first-child {
+        margin-top: auto;
+
+        a {
+          &:hover,
+          &:focus {
+            padding-left: $s1;
+          }
+        }
+      }
 
       li {
         a {
           padding: $s-1 0;
           border-bottom: 1px solid $noir;
           transition: padding 0.333s;
+        }
+      }
 
-          &:hover,
-          &:focus {
-            padding-left: $s1;
-          }
+      &:last-child {
+        margin: $s1 0;
+
+        a {
+          padding: $s-2 0;
         }
       }
     }

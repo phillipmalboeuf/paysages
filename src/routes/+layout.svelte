@@ -6,12 +6,12 @@
   
 	import Header from '$lib/components/Header.svelte';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <ParaglideJS {i18n}>
 	<main>
-		<Header />
+		<Header navigations={data.navigations} />
 		{@render children()}
 	</main>
 </ParaglideJS>
