@@ -1,5 +1,5 @@
 <script>
-
+  import Media from '$lib/components/Media.svelte'
   import Hero from '$lib/components/Hero.svelte'
 
 </script>
@@ -8,8 +8,13 @@
 
 <section class="padded">
   <h1>Notre paysage<br>Notre patrimoine</h1>
-</section>
 
+  <div class="flex">
+    <div class="col col--6of12">
+      <Media />
+    </div>
+  </div>
+</section>
 
 <style lang="scss">
   section {
