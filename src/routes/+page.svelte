@@ -1,23 +1,33 @@
-<script>
-  import Media from '$lib/components/Media.svelte'
-  import Hero from '$lib/components/Hero.svelte'
+<script lang="ts">
+  import { isTypeText } from '$lib/clients/content_types'
 
+  import Hero from '$lib/components/Hero.svelte'
+  import Text from '$lib/components/Text.svelte'
+
+  import type { PageData } from './$types'
+  let { data }: { data: PageData } = $props()
 </script>
+
+<!-- 
+{#if data.page.fields.popup}
+<Popup item={data.page.fields.popup} />
+{/if} -->
 
 <Hero />
 
+{#if data.page.fields.contenu?.length}
+{#each data.page.fields.contenu as item, i}
 <section class="padded">
-  <h1>Notre paysage<br>Notre patrimoine</h1>
-
-  <div class="flex">
-    <div class="col col--6of12">
-      <Media />
-    </div>
-  </div>
+  {#if isTypeText(item)}
+  <Text {item} />
+  {/if}
 </section>
+{/each}
+{/if}
+
 
 <style lang="scss">
   section {
-    min-height: 100vh;
+    // margin: $s5 0;
   }
 </style>

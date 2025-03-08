@@ -5,7 +5,8 @@
 	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
   
 	import Header from '$lib/components/Header.svelte';
-
+	import Footer from '$lib/components/Footer.svelte';
+	
 	let { children, data } = $props();
 </script>
 
@@ -13,5 +14,6 @@
 	<main>
 		<Header navigations={data.navigations} />
 		{@render children()}
+		<Footer navigations={data.navigations} />
 	</main>
 </ParaglideJS>

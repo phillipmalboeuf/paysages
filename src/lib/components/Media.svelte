@@ -1,19 +1,45 @@
+<script lang="ts">
+  import type { Asset } from 'contentful'
+
+  let {
+    media,
+    mobileMedia,
+    alt,
+    width = 1666,
+    ar = undefined,
+    eager = false
+  }: { media: Asset<"WITHOUT_UNRESOLVABLE_LINKS">, mobileMedia?: Asset<"WITHOUT_UNRESOLVABLE_LINKS">, alt?: string, width?: number, ar?: number, eager?: boolean } = $props()
+
+  function cdn(url: string) {
+    return url
+  }
+</script>
 
 <figure>
-  <img src="https://images.unsplash.com/photo-1739993655680-4b7050ed2896?q=80&w=1270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero" />
+  <picture>
+    <source srcSet="{cdn(mobileMedia ? mobileMedia.fields.file.url : media.fields.file.url)}?h={Math.round(width * 0.333)}{ar ? `&fit=fill&w=${Math.round(width * 0.333 * ar)}` : ''}" media="(max-width: 900px)" />
+    <source srcSet="{cdn(media.fields.file.url)}?w={Math.round(width * 0.666)}{ar ? `&fit=fill&h=${Math.round(width * 0.666 * ar)}` : ''}" media="(max-width: 1200px)" />
+    <source srcSet="{cdn(media.fields.file.url)}?w={Math.round(width * 1.333)}{ar ? `&fit=fill&h=${Math.round(width * 1.333 * ar)}` : ''}" media="(min-width: 1500px)" />
+    <img src="{cdn(media.fields.file.url)}?w={width}{ar ? `&fit=fill&h=${Math.round(width * ar)}` : ''}"
+      style:--ar={ar ? `${width} / ${Math.round(width * ar)}` : `${media.fields.file.details.image.width} / ${media.fields.file.details.image.height}`}
+      style:--mobile-ar={(!ar && mobileMedia) ? `${mobileMedia.fields.file.details.image.width} / ${mobileMedia.fields.file.details.image.height}` : undefined}
+      alt="{alt || media.fields.title}" loading={eager ? "eager" : "lazy"} />
+  </picture>
   <figcaption>
     <svg viewBox="0 0 300 50" preserveAspectRatio="none">
     <path d="M0 0L300 50H0V0Z"/>
     </svg>
 
-    Caption
+    {#if media.fields.description}
+    <p>{@html media.fields.description}</p>
+    {/if}
   </figcaption>
 </figure>
 
 <style lang="scss">
   figure {
     width: 100%;
-    margin: $s1 0;
+    // margin: 0;
     position: relative;
     overflow: hidden;
 

@@ -29,6 +29,7 @@
     }
 
     svg {
+      
       path {
         fill: $jaune !important;
       }
