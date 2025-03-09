@@ -19,7 +19,7 @@
     {#if item.fields.liens?.length}
     <ul class="list--nostyle flex flex--gapped">
       {#each item.fields.liens as lien}
-      <li><a href={lien.fields.route}>{lien.fields.titre}</a></li>
+      <li><a href={lien.fields.route}><u>{lien.fields.titre}</u></a></li>
       {/each}
     </ul>
     {/if}

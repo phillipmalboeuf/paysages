@@ -6,6 +6,7 @@
   
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import Articles from '$lib/components/Articles.svelte';
 	
 	let { children, data } = $props();
 </script>
@@ -14,6 +15,7 @@
 	<main>
 		<Header navigations={data.navigations} />
 		{@render children()}
+		<Articles articles={data.articles.items} />
 		<Footer navigations={data.navigations} />
 	</main>
 </ParaglideJS>

@@ -1,5 +1,20 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 
+export interface TypeArticleFields {
+    titre?: EntryFieldTypes.Symbol;
+    id?: EntryFieldTypes.Symbol;
+    date?: EntryFieldTypes.Date;
+    media?: EntryFieldTypes.AssetLink;
+    liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
+}
+
+export type TypeArticleSkeleton = EntrySkeletonType<TypeArticleFields, "article">;
+export type TypeArticle<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeArticleSkeleton, Modifiers, Locales>;
+
+export function isTypeArticle<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeArticle<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'article'
+}
+
 export interface TypeLienDeNavigationFields {
     titre: EntryFieldTypes.Symbol;
     route?: EntryFieldTypes.Symbol;
