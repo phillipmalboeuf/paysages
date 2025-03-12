@@ -28,6 +28,21 @@ export function isTypeLienDeNavigation<Modifiers extends ChainModifiers, Locales
     return entry.sys.contentType.sys.id === 'lienDeNavigation'
 }
 
+export interface TypeListeFields {
+    titre?: EntryFieldTypes.Symbol;
+    id?: EntryFieldTypes.Symbol;
+    corps?: EntryFieldTypes.RichText;
+    type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes">;
+    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeTextSkeleton>>;
+}
+
+export type TypeListeSkeleton = EntrySkeletonType<TypeListeFields, "liste">;
+export type TypeListe<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeListeSkeleton, Modifiers, Locales>;
+
+export function isTypeListe<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeListe<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'liste'
+}
+
 export interface TypeNavigationFields {
     id?: EntryFieldTypes.Symbol;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
@@ -45,7 +60,7 @@ export interface TypePageFields {
     id?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
     couleur?: EntryFieldTypes.Symbol<"bleu" | "corail" | "gris" | "jaune" | "vert">;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeTextSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeListeSkeleton | TypeTextSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;

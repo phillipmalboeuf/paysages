@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { isTypeText } from '$lib/clients/content_types'
+  import { isTypeListe, isTypeText } from '$lib/clients/content_types'
 
   import Hero from '$lib/components/Hero.svelte'
+  import List from '$lib/components/List.svelte'
   import Text from '$lib/components/Text.svelte'
 
   import type { PageData } from './$types'
@@ -13,13 +14,17 @@
 <Popup item={data.page.fields.popup} />
 {/if} -->
 
+{#if data.page.fields.id === 'accueil'}
 <Hero />
+{/if}
 
 {#if data.page.fields.contenu?.length}
 {#each data.page.fields.contenu as item, i}
 <section class="padded">
   {#if isTypeText(item)}
   <Text {item} />
+  {:else if isTypeListe(item)}
+  <List {item} />
   {/if}
 </section>
 {/each}
