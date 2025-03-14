@@ -12,10 +12,19 @@
 </script>
 
 <ParaglideJS {i18n}>
+	<Header navigations={data.navigations} />
 	<main>
-		<Header navigations={data.navigations} />
+		
 		{@render children()}
+
 		<Articles articles={data.articles.items} />
-		<Footer navigations={data.navigations} />
 	</main>
+	<Footer navigations={data.navigations} />
 </ParaglideJS>
+
+
+<style lang="scss">
+	main {
+		padding-top: 100px;
+	}
+</style>

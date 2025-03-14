@@ -7,6 +7,7 @@
 
 <style lang="scss">
   section {
+    position: relative;
     min-height: 100vh;
     background-color: $noir;
 

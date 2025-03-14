@@ -327,6 +327,14 @@ button,
 		border-color: transparent;
 	}
 
+	&.button--underline {
+		color: currentColor;
+		background: transparent;
+		border-color: transparent;
+		border-radius: 0;
+		border-bottom: 1px solid;
+	}
+
 	&:hover,
 	&:focus {
 		text-decoration: none;
@@ -397,11 +405,13 @@ input,
 select,
 textarea {
 	width: 100%;
-	color: $noir;
-	background-color: $blanc;
-	border: 1px solid $muted;
-	border-radius: calc($radius / 2);
-	padding: ($s-2) ($s-1);
+	color: currentColor;
+	// background-color: $blanc;
+	border: none;
+	border-bottom: 1px solid;
+	// border-radius: calc($radius / 2);
+	border-radius: 0;
+	padding: ($s-2) 0;
 
 	&:focus {
 		outline: 1px solid $accent;

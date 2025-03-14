@@ -15,6 +15,37 @@ export function isTypeArticle<Modifiers extends ChainModifiers, Locales extends 
     return entry.sys.contentType.sys.id === 'article'
 }
 
+export interface TypeFormulaireFields {
+    titre?: EntryFieldTypes.Symbol;
+    id?: EntryFieldTypes.Symbol;
+    action?: EntryFieldTypes.Symbol;
+    corps?: EntryFieldTypes.RichText;
+    bouton?: EntryFieldTypes.Symbol;
+    remerciment?: EntryFieldTypes.Symbol;
+    champs?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeInputSkeleton>>;
+}
+
+export type TypeFormulaireSkeleton = EntrySkeletonType<TypeFormulaireFields, "formulaire">;
+export type TypeFormulaire<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeFormulaireSkeleton, Modifiers, Locales>;
+
+export function isTypeFormulaire<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeFormulaire<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'formulaire'
+}
+
+export interface TypeInputFields {
+    titre?: EntryFieldTypes.Symbol;
+    id?: EntryFieldTypes.Symbol;
+    type?: EntryFieldTypes.Symbol<"Email" | "Options" | "Phone" | "Text" | "Textarea">;
+    options?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+}
+
+export type TypeInputSkeleton = EntrySkeletonType<TypeInputFields, "input">;
+export type TypeInput<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeInputSkeleton, Modifiers, Locales>;
+
+export function isTypeInput<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeInput<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'input'
+}
+
 export interface TypeLienDeNavigationFields {
     titre: EntryFieldTypes.Symbol;
     route?: EntryFieldTypes.Symbol;
@@ -60,7 +91,7 @@ export interface TypePageFields {
     id?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
     couleur?: EntryFieldTypes.Symbol<"bleu" | "corail" | "gris" | "jaune" | "vert">;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeListeSkeleton | TypeTextSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeFormulaireSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;

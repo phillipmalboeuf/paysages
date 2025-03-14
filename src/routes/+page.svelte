@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { isTypeListe, isTypeText } from '$lib/clients/content_types'
-
+  import { isTypeFormulaire, isTypeListe, isTypeText } from '$lib/clients/content_types'
+  import Form from '$lib/components/Form.svelte'
   import Hero from '$lib/components/Hero.svelte'
   import List from '$lib/components/List.svelte'
   import Text from '$lib/components/Text.svelte'
@@ -25,6 +25,8 @@
   <Text {item} />
   {:else if isTypeListe(item)}
   <List {item} />
+  {:else if isTypeFormulaire(item)}
+  <Form {item} />
   {/if}
 </section>
 {/each}
