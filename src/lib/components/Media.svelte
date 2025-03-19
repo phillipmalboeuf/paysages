@@ -53,7 +53,7 @@
       transition: transform 0.333s, opacity 0.333s;
       transform: translateY(100%);
       opacity: 0;
-      mix-blend-mode: screen;
+      // mix-blend-mode: screen;
 
       svg {
         position: absolute;
