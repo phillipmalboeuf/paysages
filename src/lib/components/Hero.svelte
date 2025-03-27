@@ -1,82 +1,107 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import type { TypeHeroSkeleton } from '$lib/clients/content_types'
+  import type { Entry } from 'contentful'
+  
+  import Rich from './Rich.svelte'
+  import Media from './Media.svelte'
 
-  let ready = $state(false);
-
-  onMount(() => {
-    ready = true;
-  });
+  let { item }: { item: Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> } = $props()
 </script>
 
-<section class:ready>
-  <img src="https://images.unsplash.com/photo-1739993655680-4b7050ed2896?q=80&w=1270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero" />
-  <svg viewBox="0 0 1432 700" preserveAspectRatio="xMidYMax meet">
-    <defs>
-      <mask id="svgMask" fill="white">
-        <path d="M0 0H1432V700H0Z" fill="white"/>
-        <path style:--delay={0} d="M465.683 233.302C465.683 104.459 361.43 0 232.842 0H0V699.955H232.842V466.653C361.43 466.653 465.683 362.194 465.683 233.352V233.302Z" fill="black"/>
-        <path style:--delay={0.2} d="M826.611 0C633.728 0 477.349 156.688 477.349 349.952C477.349 543.216 633.728 699.905 826.611 699.905V0Z" fill="black"/>
-        <path style:--delay={0.4} d="M849.896 0L1432 699.955V0H849.896Z" fill="black"/>
-      </mask>
-    </defs>
-    <rect width="100%" height="100%" fill="white" mask="url(#svgMask)" />
-  </svg>
+<section class="flex flex--gapped">
+  {#if item.fields.titre}
+  <div class="col col--12of12 col--mobile--12of12">
+    <h2 class="h1">{@html item.fields.titre}</h2>
+  </div>
+  {/if}
+  {#if item.fields.image}
+  <div class="col col--12of12 col--mobile--12of12 {item.fields.alignement}">
+    <figure>
+      <Media media={item.fields.image} noCaption focalPoint={item.fields.focus?.focalPoint as { x: number, y: number }} />
+      {#if !!item.fields.alignement}
+      <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+      <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+      {/if}
+      {#if item.fields.image.fields.description}
+      <figcaption>
+        <p>{@html item.fields.image.fields.description}</p>
+      </figcaption>
+      {/if}
+    </figure>
+  </div>
+  {/if}
 </section>
 
 <style lang="scss">
   section {
-    position: relative;
-    min-height: 100vh;
-    background-color: $jaune;
-    scroll-timeline: --scrollTimeline y;
-  }
+    figure {
+      position: relative;
+      width: calc(100% + $s0 * 2);
+      margin: $s3 calc($s0 * -1);
 
-  svg,
-  img {
-    position: absolute;
-    bottom: $s1;
-    left: $s1;
-    width: calc(100% - $s1 * 2);
-    aspect-ratio: 1432/700;
-    // padding: $s1;
-    // border: none;
-  }
+      :global(img), :global(video) {
+        max-height: 66svh;
+      }
 
-  svg {
-    transform: scale(1.01);
-    // padding: $s1;
-    // fill: $jaune;
-    // background-color: $jaune;
+      figcaption {
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: $s0;
 
+        p {
+          max-width: none;
+        }
+      }
 
-    mask {
-      path[fill="black"] {
-        transition: transform 666ms ease-in-out calc(var(--delay) * 666ms);
-        transform: translateY(100%);
+      svg {
+        position: absolute;
+        z-index: 2;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 10svh;
+        transform: rotate(180deg);
 
-        .ready & {
-          transform: translateY(0);
+        path {
+          color: var(--background-color, white);
+        }
+
+        &:last-of-type {
+          top: auto;
+          bottom: -1px;
+          transform: rotate(0deg);
         }
       }
     }
 
-    rect {
-      fill: $jaune;
-    }
-  }
-
-  img {
-    animation-name: parallaxAnimation;
-    animation-timeline: --scrollTimeline;
-  }
-
-  @keyframes parallaxAnimation {
-    from {
-      transform: translateY(-10%);
+    div.Gauche {
+      figure {
+        svg {
+          &:first-of-type {
+            transform: rotate(180deg) scaleX(-1);
+          }
+        }
+      }
     }
 
-    to {
-      transform: translateY(10%);
+    div.Droite {
+      figure {
+        figcaption {
+          left: auto;
+          right: 0;
+          text-align: right;
+        }
+
+        svg {
+          &:last-of-type {
+            transform: rotate(180deg) scaleY(-1);
+          }
+        }
+      }
     }
   }
 </style>
+

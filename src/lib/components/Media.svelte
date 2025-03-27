@@ -7,8 +7,28 @@
     alt,
     width = 1666,
     ar = undefined,
-    eager = false
-  }: { media: Asset<"WITHOUT_UNRESOLVABLE_LINKS">, mobileMedia?: Asset<"WITHOUT_UNRESOLVABLE_LINKS">, alt?: string, width?: number, ar?: number, eager?: boolean } = $props()
+    focalPoint = undefined,
+    eager = false,
+    noCaption = false
+  }: {
+    media: Asset<"WITHOUT_UNRESOLVABLE_LINKS">,
+    mobileMedia?: Asset<"WITHOUT_UNRESOLVABLE_LINKS">,
+    alt?: string,
+    width?: number,
+    ar?: number,
+    focalPoint?: { x: number, y: number },
+    eager?: boolean,
+    noCaption?: boolean
+  } = $props()
+
+  function getNormalizedFocalPoint(fp: { x: number, y: number }, width: number, height: number) {
+    return {
+      x: fp.x / width,
+      y: fp.y / height
+    }
+  }
+
+  const normalizedFP = $derived(focalPoint ? getNormalizedFocalPoint(focalPoint, media.fields.file.details.image.width, media.fields.file.details.image.height) : undefined)
 
   function cdn(url: string) {
     return url
@@ -23,8 +43,11 @@
     <img src="{cdn(media.fields.file.url)}?w={width}{ar ? `&fit=fill&h=${Math.round(width * ar)}` : ''}"
       style:--ar={ar ? `${width} / ${Math.round(width * ar)}` : `${media.fields.file.details.image.width} / ${media.fields.file.details.image.height}`}
       style:--mobile-ar={(!ar && mobileMedia) ? `${mobileMedia.fields.file.details.image.width} / ${mobileMedia.fields.file.details.image.height}` : undefined}
+      style:--fp-x={normalizedFP ? `${normalizedFP.x * 100}%` : '50%'}
+      style:--fp-y={normalizedFP ? `${normalizedFP.y * 100}%` : '50%'}
       alt="{alt || media.fields.title}" loading={eager ? "eager" : "lazy"} />
   </picture>
+  {#if !noCaption}
   <figcaption>
     <svg viewBox="0 0 300 50" preserveAspectRatio="none">
     <path d="M0 0L300 50H0V0Z"/>
@@ -34,6 +57,7 @@
     <p>{@html media.fields.description}</p>
     {/if}
   </figcaption>
+  {/if}
 </figure>
 
 <style lang="scss">
@@ -42,6 +66,11 @@
     // margin: 0;
     position: relative;
     overflow: hidden;
+
+    img, video {
+      object-position: var(--fp-x) var(--fp-y);
+      object-fit: cover;
+    }
 
     figcaption {
       position: absolute;
@@ -75,7 +104,7 @@
         opacity: 1;
 
         svg {
-          height: 5lvh;
+          height: 5svh;
         }
       }
     }

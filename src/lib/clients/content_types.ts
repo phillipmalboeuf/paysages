@@ -32,6 +32,34 @@ export function isTypeFormulaire<Modifiers extends ChainModifiers, Locales exten
     return entry.sys.contentType.sys.id === 'formulaire'
 }
 
+export interface TypeHeroFields {
+    titre?: EntryFieldTypes.Symbol;
+    id?: EntryFieldTypes.Symbol;
+    alignement?: EntryFieldTypes.Symbol<"Droite" | "Gauche">;
+    image?: EntryFieldTypes.AssetLink;
+    focus?: EntryFieldTypes.Object<{ focalPoint: { x: number, y: number } }>;
+}
+
+export type TypeHeroSkeleton = EntrySkeletonType<TypeHeroFields, "hero">;
+export type TypeHero<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeHeroSkeleton, Modifiers, Locales>;
+
+export function isTypeHero<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeHero<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'hero'
+}
+
+export interface TypeImageFocusedFields {
+    title: EntryFieldTypes.Symbol;
+    image: EntryFieldTypes.AssetLink;
+    focalPoint: EntryFieldTypes.Object;
+}
+
+export type TypeImageFocusedSkeleton = EntrySkeletonType<TypeImageFocusedFields, "imageFocused">;
+export type TypeImageFocused<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeImageFocusedSkeleton, Modifiers, Locales>;
+
+export function isTypeImageFocused<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeImageFocused<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'imageFocused'
+}
+
 export interface TypeInputFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
@@ -91,7 +119,7 @@ export interface TypePageFields {
     id?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
     couleur?: EntryFieldTypes.Symbol<"bleu" | "corail" | "gris" | "jaune" | "vert">;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeFormulaireSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeFormulaireSkeleton | TypeHeroSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
@@ -104,7 +132,8 @@ export function isTypePage<Modifiers extends ChainModifiers, Locales extends Loc
 export interface TypeTextFields {
     title?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
-    media?: EntryFieldTypes.AssetLink;
+    image?: EntryFieldTypes.AssetLink;
+    focus?: EntryFieldTypes.Object;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
     corps?: EntryFieldTypes.RichText;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
