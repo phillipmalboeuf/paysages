@@ -49,7 +49,7 @@
   }
 
   svg {
-    transform: scale(1.01);
+    // transform: scale(1.01);
     // padding: $s1;
     // fill: $jaune;
     // background-color: $jaune;
