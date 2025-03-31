@@ -135,6 +135,7 @@ export interface TypeTextFields {
     image?: EntryFieldTypes.AssetLink;
     focus?: EntryFieldTypes.Object;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
+    alignement?: EntryFieldTypes.Symbol<"Gauche" | "Droite">;
     corps?: EntryFieldTypes.RichText;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }

@@ -21,7 +21,7 @@
 
 {#if data.page.fields.contenu?.length}
 {#each data.page.fields.contenu as item, i}
-<section class="padded">
+<section class="{isTypeText(item) ? `${item.fields.fond}` : ''}">
   {#if isTypeText(item)}
   <Text {item} />
   {:else if isTypeListe(item)}
@@ -38,6 +38,28 @@
 
 <style lang="scss">
   section {
-    // margin: $s5 0;
+
+    :global(> section) {
+      padding: $s5 $s0;
+    }
+
+    :global(> section.Gauche),
+    :global(> section.Droite) {
+      padding: calc($s5 + 10svh) $s0;
+    }
+
+    &.Blanc {
+      background-color: $blanc;
+    }
+    
+    &.Foncé {
+      :global(.corail) & {
+        background-color: $corail;
+      }
+    }
+    
+    &.Léger {
+      background-color: $bleu;
+    }
   }
 </style>

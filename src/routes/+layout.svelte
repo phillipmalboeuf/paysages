@@ -7,13 +7,15 @@
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Articles from '$lib/components/Articles.svelte';
+
+	import { page } from '$app/stores'
 	
 	let { children, data } = $props();
 </script>
 
 <ParaglideJS {i18n}>
 	<Header navigations={data.navigations} />
-	<main>
+	<main class="{$page.data.page?.fields.couleur}">
 		
 		{@render children()}
 
@@ -25,6 +27,10 @@
 
 <style lang="scss">
 	main {
-		padding-top: 100px;
+		// padding-top: 100px;
+
+		:global(> section:first-of-type > section:not(.Gauche):not(.Droite)) {
+			padding-top: 100px;
+		}
 	}
 </style>
