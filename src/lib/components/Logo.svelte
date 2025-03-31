@@ -29,6 +29,12 @@
     min-height: 100vh;
     background-color: $jaune;
     scroll-timeline: --scrollTimeline y;
+
+    :global(.corail) & { background-color: $corail; }
+    :global(.jaune) & { background-color: $jaune; }
+    :global(.bleu) & { background-color: $bleu; }
+    :global(.vert) & { background-color: $vert; }
+    :global(.gris) & { background-color: $gris; }
   }
 
   svg,
@@ -62,6 +68,12 @@
 
     rect {
       fill: $jaune;
+
+      :global(.corail) & { fill: $corail; }
+      :global(.jaune) & { fill: $jaune; }
+      :global(.bleu) & { fill: $bleu; }
+      :global(.vert) & { fill: $vert; }
+      :global(.gris) & { fill: $gris; }
     }
   }
 

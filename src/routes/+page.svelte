@@ -53,13 +53,19 @@
     }
     
     &.Foncé {
-      :global(.corail) & {
-        background-color: $corail;
-      }
+      :global(.corail) & { background-color: $corail; }
+      :global(.jaune) & { background-color: $jaune; }
+      :global(.bleu) & { background-color: $bleu; }
+      :global(.vert) & { background-color: $vert; }
+      :global(.gris) & { background-color: $gris; }
     }
     
     &.Léger {
-      background-color: $bleu;
+      :global(.corail) & { background-color: $corail-pale; }
+      :global(.jaune) & { background-color: $jaune-pale; }
+      :global(.bleu) & { background-color: $bleu-pale; }
+      :global(.vert) & { background-color: $vert-pale; }
+      :global(.gris) & { background-color: $gris-pale; }
     }
   }
 </style>
