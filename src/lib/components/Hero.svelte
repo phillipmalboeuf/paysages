@@ -68,6 +68,10 @@
         height: 10svh;
         transform: rotate(180deg);
 
+        @media (max-width: $mobile) {
+          height: 5svh;
+        }
+
         path {
           color: var(--background-color, white);
         }

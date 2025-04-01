@@ -52,6 +52,10 @@
     background-color: $jaune;
     // scroll-timeline: --scrollTimeline y;
 
+    @media (max-width: $mobile) {
+      min-height: 50svh;
+    }
+
     :global(.corail) & { background-color: $corail; }
     :global(.jaune) & { background-color: $jaune; }
     :global(.bleu) & { background-color: $bleu; }
@@ -72,44 +76,42 @@
     :global(.parallax) {
       background-color: $noir;
     }
-  }
 
-  svg {
-    transform: scale(1.005);
-    // padding: $s1;
-    // fill: $jaune;
-    // background-color: $jaune;
+    svg {
+      transform: scale(1.0);
+      bottom: calc($s1 - 1px);
+      left: calc($s1 - 1px);
+      width: calc((100% - $s1 * 2) + 2px);
+      // padding: $s1;
+      // fill: $jaune;
+      // background-color: $jaune;
 
 
-    mask {
-      path[fill="black"] {
-        transition: transform 666ms ease-in-out calc(var(--delay) * 666ms);
-        transform: translateY(100%);
+      mask {
+        path[fill="black"] {
+          transition: transform 666ms ease-in-out calc(var(--delay) * 666ms);
+          transform: translateY(100%);
+          will-change: transform;
+        }
+      }
 
-        .ready & {
+      rect {
+        fill: $jaune;
+
+        :global(.corail) & { fill: $corail; }
+        :global(.jaune) & { fill: $jaune; }
+        :global(.bleu) & { fill: $bleu; }
+        :global(.vert) & { fill: $vert; }
+        :global(.gris) & { fill: $gris; }
+      }
+    }
+
+    &.ready {
+      mask {
+        path[fill="black"] {
           transform: translateY(0);
         }
       }
     }
-
-    rect {
-      fill: $jaune;
-
-      :global(.corail) & { fill: $corail; }
-      :global(.jaune) & { fill: $jaune; }
-      :global(.bleu) & { fill: $bleu; }
-      :global(.vert) & { fill: $vert; }
-      :global(.gris) & { fill: $gris; }
-    }
   }
-
-  // @keyframes parallaxAnimation {
-  //   from {
-  //     transform: translateY(-10%) scale(1.1);
-  //   }
-
-  //   to {
-  //     transform: translateY(10%) scale(1.1);
-  //   }
-  // }
 </style>

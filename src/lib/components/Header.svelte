@@ -61,6 +61,15 @@
     button {
       pointer-events: auto;
     }
+
+    button {
+      @media (max-width: $mobile) {
+        :global(svg) {
+          width: $s1;
+          height: $s1;
+        }
+      }
+    }
     
     .logo {
       width: auto;
@@ -69,8 +78,22 @@
         transition: opacity 0.333s, transform 0.333s;
         transform: translateX(calc(-85px - var(--gap)));
 
+        @media (max-width: $mobile) {
+          transform: translateX(calc(-60px - var(--gap)));
+
+          &:last-child {
+            width: 140px;
+            height: auto;
+          }
+        }
+
         &:first-child {
           opacity: 0;
+
+          @media (max-width: $mobile) {
+            width: 60px;
+            height: auto;
+          }
         }
       }
     }
@@ -82,6 +105,13 @@
 
           &:first-child {
             opacity: 1;
+          }
+
+          @media (max-width: $mobile) {
+            &:last-child {
+              opacity: 0;
+              transform: translateX(-100%);
+            }
           }
         }
       }
@@ -122,11 +152,19 @@
           padding: $s-1 0;
           border-bottom: 1px solid $noir;
           transition: padding 0.333s;
+
+          @media (max-width: $mobile) {
+            padding: $s-2 0;
+          }
         }
       }
 
       &:last-child {
         margin: $s1 0;
+
+        @media (max-width: $mobile) {
+          margin-top: auto;
+        }
 
         a {
           padding: $s-2 0;
