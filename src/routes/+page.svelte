@@ -21,7 +21,7 @@
 
 {#if data.page.fields.contenu?.length}
 {#each data.page.fields.contenu as item, i}
-<section class="{isTypeText(item) ? `${item.fields.fond}` : ''}">
+<section class="{(isTypeText(item) || isTypeListe(item)) ? `${item.fields.fond}` : ''}">
   {#if isTypeText(item)}
   <Text {item} />
   {:else if isTypeListe(item)}

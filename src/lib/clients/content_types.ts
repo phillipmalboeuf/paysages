@@ -92,7 +92,8 @@ export interface TypeListeFields {
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
     type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider">;
-    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeTextSkeleton>>;
+    fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
+    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeTextSkeleton | TypeImageFocusedSkeleton>>;
 }
 
 export type TypeListeSkeleton = EntrySkeletonType<TypeListeFields, "liste">;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeText } from '$lib/clients/content_types'
+  import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeImageFocused, isTypeText } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
   import emblaCarouselSvelte from 'embla-carousel-svelte'
@@ -11,6 +11,7 @@
 
   import { onMount, onDestroy } from 'svelte'
   import { browser } from '$app/environment'
+  import Media from './Media.svelte';
 
   const options: EmblaOptionsType = {
     loop: true,
@@ -61,9 +62,13 @@
         ? 3
         : isTypeArticle(listItem)
         ? 3
+        : isTypeImageFocused(listItem)
+        ? 3
         : 1}>
         {#if isTypeText(listItem)}
           <Text item={listItem} />
+        {:else if isTypeImageFocused(listItem)}
+          <Media media={listItem.fields.image} />
         {/if}
       </li>
       {/each}
@@ -80,18 +85,20 @@
   </div>
   {:else}
   <ul class="list--nostyle col col--12of12 flex flex--gapped">
-    {#each item.fields.items as _item}
-    <li class="col" class:col--4of12={!!item.fields.type || item.fields.type === 'Colonnes'} class:col--12of12={item.fields.type === 'Accordeon'}>
+    {#each item.fields.items as listItem}
+    <li class="col" class:col--6of12={!!item.fields.type || item.fields.type === 'Colonnes'} class:col--12of12={item.fields.type === 'Accordeon'}>
       {#if item.fields.type === 'Accordeon'}
       <details name={item.sys.id}>
-        {#if isTypeText(_item)}
-        <summary class="flex flex--gapped flex--middle flex--spaced"><h3>{_item.fields.title}</h3> <span class="h3"></span></summary>
-        <article><Text item={_item} noTitle /></article>
+        {#if isTypeText(listItem)}
+        <summary class="flex flex--gapped flex--middle flex--spaced"><h3>{listItem.fields.title}</h3> <span class="h3"></span></summary>
+        <article><Text item={listItem} noTitle /></article>
         {/if}
       </details>
       {:else}
-      {#if isTypeText(_item)}
-      <Text item={_item} />
+      {#if isTypeText(listItem)}
+      <Text item={listItem} />
+      {:else if isTypeImageFocused(listItem)}
+      <Media media={listItem.fields.image} />
       {/if}
       {/if}
     </li>
