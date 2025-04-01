@@ -68,6 +68,7 @@
     overflow: hidden;
 
     img {
+      aspect-ratio: var(--ar);
       object-position: var(--fp-x) var(--fp-y);
       object-fit: cover;
     }
