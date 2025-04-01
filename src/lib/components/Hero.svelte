@@ -4,6 +4,7 @@
   
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
+  import Parallax from './Parallax.svelte'
 
   let { item }: { item: Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> } = $props()
 </script>
@@ -17,7 +18,9 @@
   {#if item.fields.image}
   <div class="col col--12of12 col--mobile--12of12 {item.fields.alignement}">
     <figure>
-      <Media media={item.fields.image} noCaption focalPoint={item.fields.focus?.focalPoint as { x: number, y: number }} />
+      <Parallax>
+        <Media media={item.fields.image} noCaption focalPoint={item.fields.focus?.focalPoint as { x: number, y: number }} />
+      </Parallax>
       {#if !!item.fields.alignement}
       <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
       <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>

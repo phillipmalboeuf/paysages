@@ -1,7 +1,24 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import type { Asset } from 'contentful'
+  import { onMount } from "svelte"
+
+  import Media from './Media.svelte'
+  import Parallax from './Parallax.svelte'
 
   let ready = $state(false);
+
+  let {
+    image,
+    focus
+  }: {
+    image: Asset<"WITHOUT_UNRESOLVABLE_LINKS">,
+    focus: {
+      focalPoint: {
+        x: number;
+        y: number;
+      };
+    }
+  } = $props()
 
   onMount(() => {
     ready = true;
@@ -9,7 +26,12 @@
 </script>
 
 <section class:ready>
-  <img src="https://images.unsplash.com/photo-1739993655680-4b7050ed2896?q=80&w=1270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero" />
+  {#if image}
+  <Parallax>
+    <Media noCaption ar={700/1432} media={image} focalPoint={focus?.focalPoint as { x: number, y: number }} />
+  </Parallax>
+  {/if}
+  <!-- <img bind:this={element} src="https://images.unsplash.com/photo-1739993655680-4b7050ed2896?q=80&w=1270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero" /> -->
   <svg viewBox="0 0 1432 700" preserveAspectRatio="xMidYMax meet">
     <defs>
       <mask id="svgMask" fill="white">
@@ -28,28 +50,32 @@
     position: relative;
     min-height: 100vh;
     background-color: $jaune;
-    scroll-timeline: --scrollTimeline y;
+    // scroll-timeline: --scrollTimeline y;
 
     :global(.corail) & { background-color: $corail; }
     :global(.jaune) & { background-color: $jaune; }
     :global(.bleu) & { background-color: $bleu; }
     :global(.vert) & { background-color: $vert; }
     :global(.gris) & { background-color: $gris; }
-  }
 
-  svg,
-  img {
-    position: absolute;
-    bottom: $s1;
-    left: $s1;
-    width: calc(100% - $s1 * 2);
-    aspect-ratio: 1432/700;
-    // padding: $s1;
-    // border: none;
+    svg,
+    :global(.parallax) {
+      position: absolute;
+      bottom: $s1;
+      left: $s1;
+      width: calc(100% - $s1 * 2);
+      aspect-ratio: 1432/700;
+      // padding: $s1;
+      // border: none;
+    }
+
+    :global(.parallax) {
+      background-color: $noir;
+    }
   }
 
   svg {
-    // transform: scale(1.01);
+    transform: scale(1.005);
     // padding: $s1;
     // fill: $jaune;
     // background-color: $jaune;
@@ -77,18 +103,13 @@
     }
   }
 
-  img {
-    animation-name: parallaxAnimation;
-    animation-timeline: --scrollTimeline;
-  }
+  // @keyframes parallaxAnimation {
+  //   from {
+  //     transform: translateY(-10%) scale(1.1);
+  //   }
 
-  @keyframes parallaxAnimation {
-    from {
-      transform: translateY(-10%);
-    }
-
-    to {
-      transform: translateY(10%);
-    }
-  }
+  //   to {
+  //     transform: translateY(10%) scale(1.1);
+  //   }
+  // }
 </style>

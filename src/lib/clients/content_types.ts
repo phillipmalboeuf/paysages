@@ -118,6 +118,8 @@ export interface TypePageFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
+    image?: EntryFieldTypes.AssetLink;
+    focus?: EntryFieldTypes.Object<{ focalPoint: { x: number, y: number } }>;
     couleur?: EntryFieldTypes.Symbol<"bleu" | "corail" | "gris" | "jaune" | "vert">;
     contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeFormulaireSkeleton | TypeHeroSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
 }

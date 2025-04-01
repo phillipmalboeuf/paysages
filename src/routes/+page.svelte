@@ -16,7 +16,7 @@
 {/if} -->
 
 {#if data.page.fields.id === 'accueil'}
-<Logo />
+<Logo image={data.page.fields.image} focus={data.page.fields.focus} />
 {/if}
 
 {#if data.page.fields.contenu?.length}

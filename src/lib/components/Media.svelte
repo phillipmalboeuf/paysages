@@ -67,7 +67,7 @@
     position: relative;
     overflow: hidden;
 
-    img, video {
+    img {
       object-position: var(--fp-x) var(--fp-y);
       object-fit: cover;
     }
