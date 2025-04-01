@@ -8,14 +8,14 @@
   let { item, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, noTitle?: boolean } = $props()
 </script>
 
-<section class="flex flex--gapped {item.fields.alignement}">
+<section class="flex flex--gapped {item.fields.alignement}" id={item.fields.id}>
   {#if !noTitle}
   <div class="col col--12of12 col--mobile--12of12">
     <h2 class="h1">{@html item.fields.title}</h2>
   </div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}
-  <div class="col col--6of12 col--mobile--12of12 flex flex--column flex--gapped">
+  <div class="col col--6of12 col--mobile--12of12 flex flex--column flex--gapped" class:col--12of12={!item.fields.image}>
     <Rich body={item.fields.corps} />
 
     {#if item.fields.liens?.length}

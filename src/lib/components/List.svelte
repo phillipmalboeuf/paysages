@@ -2,13 +2,36 @@
   import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeText } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
+  import emblaCarouselSvelte from 'embla-carousel-svelte'
+  import Autoplay from 'embla-carousel-autoplay'
+  import type { EmblaOptionsType, EmblaPluginType, EmblaCarouselType } from 'embla-carousel'
+
   import Text from './Text.svelte'
   import Rich from './Rich.svelte'
+
+  import { onMount, onDestroy } from 'svelte'
+  import { browser } from '$app/environment'
+
+  const options: EmblaOptionsType = {
+    loop: true,
+    dragFree: false,
+    skipSnaps: true,
+    align: 'start'
+  }
+
+  const plugins: EmblaPluginType[] = [
+    // Autoplay({
+    //   delay: 0,
+    //   stopOnInteraction: false,
+    // })
+  ]
+
+  let embla: EmblaCarouselType = $state()
 
   let { item }: { item: Entry<TypeListeSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> } = $props()
 </script>
 
-<section class="flex flex--gapped">
+<section class="flex flex--gapped" id={item.fields.id}>
   {#if item.fields.titre}
   <div class="col col--12of12 col--mobile--12of12">
     <h2>{item.fields.titre}</h2>
@@ -30,9 +53,35 @@
   {/if}
 
   {#if item.fields.items?.length}
-  <ul class="list--nostyle col col--12of12">
+  {#if item.fields.type === 'Slider'}
+  <div class="embla" use:emblaCarouselSvelte={{ options: { ...options }, plugins, }} onemblaInit={e => embla = e.detail}>
+    <ul class="list--nostyle embla__container">
+      {#each item.fields.items as listItem, index}
+      <li class="embla__slide" style:--slide-columns={isTypeText(listItem)
+        ? 3
+        : isTypeArticle(listItem)
+        ? 3
+        : 1}>
+        {#if isTypeText(listItem)}
+          <Text item={listItem} />
+        {/if}
+      </li>
+      {/each}
+    </ul>
+
+    {#if item.fields.type === 'Slider'}
+      <!-- <button class="embla__prev button--accent button--circle" onclick={() => embla?.scrollPrev()} aria-label="Précédent"><svg width="32" height="32" viewBox="0 0 32 33"><path d="M17.9453 11.0988L12.4813 16.836L17.9453 22.5733" stroke="currentColor" stroke-width="1.41198"/></svg></button> -->
+      <button class="embla__next button--none" onclick={() => embla?.scrollNext()} aria-label="Suivant"><svg width="15" height="23" viewBox="0 0 15 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 21L12 11.5L2 2" stroke="currentColor" stroke-width="4"/></svg></button>
+    {/if}
+
+    <!-- {#if embla}
+      <Dots dots={item.fields.items.length} slider={embla} />
+    {/if} -->
+  </div>
+  {:else}
+  <ul class="list--nostyle col col--12of12 flex flex--gapped">
     {#each item.fields.items as _item}
-    <li>
+    <li class="col" class:col--4of12={!!item.fields.type || item.fields.type === 'Colonnes'} class:col--12of12={item.fields.type === 'Accordeon'}>
       {#if item.fields.type === 'Accordeon'}
       <details name={item.sys.id}>
         {#if isTypeText(_item)}
@@ -49,12 +98,17 @@
     {/each}
   </ul>
   {/if}
+  {/if}
 </section>
 
 <style lang="scss">
   section {
     h2 {
-      margin-bottom: $s3;
+      margin-bottom: $s2;
+    }
+
+    ul {
+      margin: $s5 0;
     }
 
     details {
@@ -81,6 +135,56 @@
             &:before {
               content: '–';
             }
+          }
+        }
+      }
+    }
+
+    .embla {
+      position: relative;
+      overflow: hidden;
+
+      .embla__container {
+        display: flex;
+      }
+
+      .embla__slide {
+        --gap: #{$s0};
+
+        $width: calc(100% / var(--slide-columns));
+        $adjust: calc(var(--gap) / var(--slide-columns));
+        --slide-width: calc(#{$width} - var(--gap) + #{$adjust});
+
+        flex: 0 0 var(--slide-width);
+        min-width: 0;
+        max-width: none;
+        width: var(--slide-width);
+        margin: 0 var(--gap);
+
+        @media (max-width: $mobile) {
+          --slide-width: 100% !important;
+        }
+      }
+
+      .embla__next {
+        position: absolute;
+        right: 0;
+        top: calc($s5 + ($s5 / 4));
+        // transform: translateY(-50%);
+      }
+    }
+
+    &#ligne-du-temps {
+      li {
+        :global(h2) {
+          
+          &:after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 15svh;
+            margin-top: $s0;
+            background-color: $noir;
           }
         }
       }

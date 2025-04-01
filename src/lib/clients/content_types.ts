@@ -91,7 +91,7 @@ export interface TypeListeFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
-    type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes">;
+    type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider">;
     items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeTextSkeleton>>;
 }
 
