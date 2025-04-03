@@ -15,6 +15,19 @@ export function isTypeArticle<Modifiers extends ChainModifiers, Locales extends 
     return entry.sys.contentType.sys.id === 'article'
 }
 
+export interface TypeCarteFields {
+    titre?: EntryFieldTypes.Symbol;
+    id?: EntryFieldTypes.Symbol;
+    googleMapId: EntryFieldTypes.Symbol;
+}
+
+export type TypeCarteSkeleton = EntrySkeletonType<TypeCarteFields, "carte">;
+export type TypeCarte<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeCarteSkeleton, Modifiers, Locales>;
+
+export function isTypeCarte<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeCarte<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'carte'
+}
+
 export interface TypeFormulaireFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
@@ -93,7 +106,7 @@ export interface TypeListeFields {
     corps?: EntryFieldTypes.RichText;
     type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider">;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
-    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeTextSkeleton | TypeImageFocusedSkeleton>>;
+    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeImageFocusedSkeleton | TypeTextSkeleton>>;
 }
 
 export type TypeListeSkeleton = EntrySkeletonType<TypeListeFields, "liste">;
@@ -122,7 +135,7 @@ export interface TypePageFields {
     image?: EntryFieldTypes.AssetLink;
     focus?: EntryFieldTypes.Object<{ focalPoint: { x: number, y: number } }>;
     couleur?: EntryFieldTypes.Symbol<"bleu" | "corail" | "gris" | "jaune" | "vert">;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeFormulaireSkeleton | TypeHeroSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeCarteSkeleton | TypeFormulaireSkeleton | TypeHeroSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
@@ -136,9 +149,9 @@ export interface TypeTextFields {
     title?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     image?: EntryFieldTypes.AssetLink;
-    focus?: EntryFieldTypes.Object;
+    focus?: EntryFieldTypes.Object<{ focalPoint: { x: number, y: number } }>;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
-    alignement?: EntryFieldTypes.Symbol<"Gauche" | "Droite">;
+    alignement?: EntryFieldTypes.Symbol<"Droite" | "Gauche">;
     corps?: EntryFieldTypes.RichText;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }
