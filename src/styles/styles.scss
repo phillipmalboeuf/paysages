@@ -516,15 +516,15 @@ hr {
 }
 
 table {
-	width: 100%;
+	// width: 100%;
 	-webkit-border-horizontal-spacing: 0;
 	-webkit-border-vertical-spacing: 0;
 
 	td,
 	th {
 		font-weight: normal;
-		border-top: 1px solid rgba($accent, 0.25);
-		padding: ($s-2) ($s2) ($s-2) 0;
+		// border-top: 1px solid rgba($accent, 0.25);
+		// padding: ($s-2) ($s2) ($s-2) 0;
 		white-space: pre-line;
 		width: calc(100% / var(--length));
 		vertical-align: top;

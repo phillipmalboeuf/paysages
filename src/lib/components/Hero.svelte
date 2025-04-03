@@ -21,10 +21,6 @@
       <Parallax>
         <Media media={item.fields.image} noCaption focalPoint={item.fields.focus?.focalPoint as { x: number, y: number }} />
       </Parallax>
-      {#if !!item.fields.alignement}
-      <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
-      <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
-      {/if}
       {#if item.fields.image.fields.description}
       <figcaption>
         <p>{@html item.fields.image.fields.description}</p>
@@ -40,7 +36,7 @@
     figure {
       position: relative;
       width: calc(100% + $s0 * 2);
-      margin: $s3 calc($s0 * -1);
+      margin: 0 calc($s0 * -1);
 
       :global(img), :global(video) {
         max-height: 66svh;
@@ -52,63 +48,63 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        padding: $s0;
+        padding: $s0 calc($s0 * 2);
 
         p {
           max-width: none;
         }
       }
 
-      svg {
-        position: absolute;
-        z-index: 2;
-        top: -1px;
-        left: 0;
-        width: 100%;
-        height: 10svh;
-        transform: rotate(180deg);
+      // svg {
+      //   position: absolute;
+      //   z-index: 2;
+      //   top: -1px;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 10svh;
+      //   transform: rotate(180deg);
 
-        @media (max-width: $mobile) {
-          height: 5svh;
-        }
+      //   @media (max-width: $mobile) {
+      //     height: 5svh;
+      //   }
 
-        path {
-          color: var(--background-color, white);
-        }
+      //   path {
+      //     color: var(--triangle-color, white);
+      //   }
 
-        &:last-of-type {
-          top: auto;
-          bottom: -1px;
-          transform: rotate(0deg);
-        }
-      }
+      //   &:last-of-type {
+      //     top: auto;
+      //     bottom: -1px;
+      //     transform: rotate(0deg);
+      //   }
+      // }
     }
 
-    div.Gauche {
-      figure {
-        svg {
-          &:first-of-type {
-            transform: rotate(180deg) scaleX(-1);
-          }
-        }
-      }
-    }
+    // div.Gauche {
+    //   figure {
+    //     svg {
+    //       &:first-of-type {
+    //         transform: rotate(180deg) scaleX(-1);
+    //       }
+    //     }
+    //   }
+    // }
 
-    div.Droite {
-      figure {
-        figcaption {
-          left: auto;
-          right: 0;
-          text-align: right;
-        }
+    // div.Droite {
+    //   figure {
+    //     figcaption {
+    //       left: auto;
+    //       right: 0;
+    //       text-align: right;
+    //     }
 
-        svg {
-          &:last-of-type {
-            transform: rotate(180deg) scaleY(-1);
-          }
-        }
-      }
-    }
+    //     svg {
+    //       &:last-of-type {
+    //         transform: rotate(180deg) scaleY(-1);
+    //       }
+    //     }
+    //   }
+    // }
   }
 </style>
 

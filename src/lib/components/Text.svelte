@@ -5,10 +5,10 @@
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
 
-  let { item, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, noTitle?: boolean } = $props()
+  let { item, first, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean } = $props()
 </script>
 
-<section class="flex flex--gapped {item.fields.alignement}" id={item.fields.id}>
+<section class="flex flex--gapped {item.fields.alignement}" class:first id={item.fields.id}>
   {#if !noTitle}
   <div class="col col--12of12 col--mobile--12of12">
     <h2 class="h1">{@html item.fields.title}</h2>
@@ -32,56 +32,11 @@
     <Media media={item.fields.image} />
   </div>
   {/if}
-
-  {#if !!item.fields.alignement}
-  <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
-  <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
-  {/if}
 </section>
 
 <style lang="scss">
   section {
-    position: relative;
-
-    svg {
-      position: absolute;
-      z-index: 2;
-      top: -1px;
-      left: 0;
-      width: 100%;
-      height: 10svh;
-      transform: rotate(180deg);
-
-      @media (max-width: $mobile) {
-        height: 5svh;
-      }
-
-      path {
-        color: var(--background-color, white);
-      }
-
-      &:last-of-type {
-        top: auto;
-        bottom: -1px;
-        transform: rotate(0deg);
-      }
-    }
-
-    &.Gauche {
-      svg {
-        &:first-of-type {
-          transform: rotate(180deg) scaleX(-1);
-        }
-      }
-    }
-
-    &.Droite {
-      svg {
-        &:last-of-type {
-          transform: rotate(180deg) scaleY(-1);
-        }
-      }
-    }
+    
   }
 </style>
 

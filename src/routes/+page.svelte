@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { isTypeCarte, isTypeFormulaire, isTypeHero, isTypeListe, isTypeText } from '$lib/clients/content_types'
+  import type { Entry } from 'contentful'
+  
+  import { isTypeCarte, isTypeFormulaire, isTypeHero, isTypeListe, isTypeText, type TypeTextSkeleton } from '$lib/clients/content_types'
   import Form from '$lib/components/Form.svelte'
   import Logo from '$lib/components/Logo.svelte'
   import List from '$lib/components/List.svelte'
@@ -22,9 +24,10 @@
 
 {#if data.page.fields.contenu?.length}
 {#each data.page.fields.contenu as item, i}
-<section class="{(isTypeText(item) || isTypeListe(item)) ? `${item.fields.fond}` : ''}">
+<section class="{item.sys.contentType.sys.id} {(item as Entry<TypeTextSkeleton>).fields.fond} {(item as Entry<TypeTextSkeleton>).fields.alignement}"
+  style:z-index={(item as Entry<TypeTextSkeleton>).fields.alignement ? i + 1 : 0}>
   {#if isTypeText(item)}
-  <Text {item} />
+  <Text {item} first={i === 0} />
   {:else if isTypeListe(item)}
   <List {item} />
   {:else if isTypeHero(item)}
@@ -34,6 +37,11 @@
   {:else if isTypeFormulaire(item)}
   <Form {item} />
   {/if}
+
+  {#if !!(item as Entry<TypeTextSkeleton>).fields.alignement}
+    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+  {/if}
 </section>
 {/each}
 {/if}
@@ -41,34 +49,94 @@
 
 <style lang="scss">
   section {
+    position: relative;
 
-    :global(> section) {
+    &:not(.hero) {
       padding: $s5 $s0;
     }
 
-    :global(> section.Gauche),
-    :global(> section.Droite) {
-      padding: calc($s5 + 10svh) $s0;
-    }
+    // :global(> section.Gauche),
+    // :global(> section.Droite) {
+    //   // mask-image: linear-gradient(black, transparent);
+    // }
+
+    // &.Gauche:has(+ &.Droite) {
+    //   // margin-bottom: calc(10svh);
+    // }
 
     &.Blanc {
-      background-color: $blanc;
+      background-color: var(--fond);
+      --fond: #{$blanc};
     }
     
     &.Foncé {
-      :global(.corail) & { background-color: $corail; }
-      :global(.jaune) & { background-color: $jaune; }
-      :global(.bleu) & { background-color: $bleu; }
-      :global(.vert) & { background-color: $vert; }
-      :global(.gris) & { background-color: $gris; }
+      background-color: var(--fond);
+      :global(.corail) & { --fond: #{$corail}; }
+      :global(.jaune) & { --fond: #{$jaune}; }
+      :global(.bleu) & { --fond: #{$bleu}; }
+      :global(.vert) & { --fond: #{$vert}; }
+      :global(.gris) & { --fond: #{$gris}; }
     }
     
     &.Léger {
-      :global(.corail) & { background-color: $corail-pale; }
-      :global(.jaune) & { background-color: $jaune-pale; }
-      :global(.bleu) & { background-color: $bleu-pale; }
-      :global(.vert) & { background-color: $vert-pale; }
-      :global(.gris) & { background-color: $gris-pale; }
+      background-color: var(--fond);
+      :global(.corail) & { --fond: #{$corail-pale}; }
+      :global(.jaune) & { --fond: #{$jaune-pale}; }
+      :global(.bleu) & { --fond: #{$bleu-pale}; }
+      :global(.vert) & { --fond: #{$vert-pale}; }
+      :global(.gris) & { --fond: #{$gris-pale}; }
+    }
+
+    svg {
+      position: absolute;
+      z-index: 2;
+      bottom: calc(100% - 1px);
+      left: 0;
+      width: 100%;
+      height: 10svh;
+      transform: rotate(0deg);
+
+      @media (max-width: $mobile) {
+        height: 5svh;
+      }
+
+      path {
+        color: var(--fond, white);
+      }
+
+      &:last-of-type {
+        bottom: auto;
+        top: calc(100% - 1px);
+        transform: rotate(180deg);
+      }
+    }
+
+    // &.first {
+    //   svg {
+    //     &:first-of-type {
+    //       display: none;
+    //     }
+    //   }
+    // }
+
+    &:not(.Gauche):not(.Droite):not(.hero) {
+      padding: calc($s5 + 10svh) $s0;
+    }
+
+    &.Gauche {
+      svg {
+        &:last-of-type {
+          transform: rotate(180deg) scaleX(-1);
+        }
+      }
+    }
+
+    &.Droite {
+      svg {
+        &:first-of-type {
+          transform: rotate(180deg) scaleY(-1);
+        }
+      }
     }
   }
 </style>

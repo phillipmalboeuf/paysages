@@ -51,7 +51,7 @@
     //   }
 
     //   path {
-    //     color: var(--background-color, white);
+    //     color: var(--fond, white);
     //   }
 
     //   &:last-of-type {
