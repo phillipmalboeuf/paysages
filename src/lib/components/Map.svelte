@@ -35,6 +35,8 @@
       width: 100%;
       height: 75svh;
       margin: $s3 0;
+
+      filter: saturate(0);
     }
 
     // svg {
