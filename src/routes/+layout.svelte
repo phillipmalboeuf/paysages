@@ -30,7 +30,7 @@
 		// padding-top: 100px;
 
 		:global(> section:first-of-type > section:not(.Gauche):not(.Droite)) {
-			padding-top: 100px;
+			// padding-top: 100px;
 		}
 	}
 </style>

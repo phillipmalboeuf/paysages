@@ -14,7 +14,7 @@
   {#if i % 4 === 0}
   <hr class="col col--12of12" />
   {/if}
-  <div class="col col--3of12 col--mobile--12of12 flex flex--column flex--gapped">
+  <div class="col col--3of12 col--mobile--6of12 flex flex--column flex--gapped">
     {#if article.fields.media}
     <Media media={article.fields.media} />
     {/if}
@@ -30,3 +30,9 @@
   </div>
   {/each}
 </section>
+
+<style lang="scss">
+  section {
+    padding-top: calc($s5 + 10svh);
+  }
+</style>

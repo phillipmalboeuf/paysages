@@ -55,6 +55,10 @@
       padding: $s5 $s0;
     }
 
+    &:first-child {
+      padding-top: calc($s5 + 10svh);
+    }
+
     // :global(> section.Gauche),
     // :global(> section.Droite) {
     //   // mask-image: linear-gradient(black, transparent);

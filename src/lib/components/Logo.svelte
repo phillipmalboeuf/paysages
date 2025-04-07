@@ -48,6 +48,7 @@
 <style lang="scss">
   section {
     position: relative;
+    z-index: 4;
     min-height: 100vh;
     background-color: $jaune;
     // scroll-timeline: --scrollTimeline y;

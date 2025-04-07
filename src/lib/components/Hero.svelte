@@ -33,6 +33,8 @@
 
 <style lang="scss">
   section {
+    overflow: hidden;
+    
     figure {
       position: relative;
       width: calc(100% + $s0 * 2);
