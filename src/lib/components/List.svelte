@@ -111,7 +111,7 @@
 <style lang="scss">
   section {
     h2 {
-      margin-bottom: $s2;
+      // margin-bottom: $s2;
     }
 
     ul {

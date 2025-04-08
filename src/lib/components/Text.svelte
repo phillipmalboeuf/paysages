@@ -28,7 +28,7 @@
   </div>
   {/if}
   {#if item.fields.image}
-  <div class="col col--6of12 col--mobile--12of12">
+  <div class="col col--6of12 col--mobile--12of12 media">
     <Media media={item.fields.image} />
   </div>
   {/if}
@@ -36,7 +36,6 @@
 
 <style lang="scss">
   section {
-    
   }
 </style>
 

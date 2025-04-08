@@ -39,8 +39,8 @@
   {/if}
 
   {#if !!(item as Entry<TypeTextSkeleton>).fields.alignement}
-    <!-- <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
-    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg> -->
+    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
   {/if}
 </section>
 {/each}
@@ -50,23 +50,6 @@
 <style lang="scss">
   section {
     position: relative;
-
-    &:not(.hero) {
-      padding: $s5 $s0;
-    }
-
-    &:first-child {
-      padding-top: calc($s5 + 10svh);
-    }
-
-    // :global(> section.Gauche),
-    // :global(> section.Droite) {
-    //   // mask-image: linear-gradient(black, transparent);
-    // }
-
-    // &.Gauche:has(+ &.Droite) {
-    //   // margin-bottom: calc(10svh);
-    // }
 
     &.Blanc {
       background-color: var(--fond);
@@ -123,8 +106,29 @@
     //   }
     // }
 
+    &:not(.hero) {
+      padding: $s5 $s0;
+    }
+
+    &:first-child {
+      padding-top: calc($s5 + 10svh);
+    }
+
+    // :global(> section.Gauche),
+    // :global(> section.Droite) {
+    //   // mask-image: linear-gradient(black, transparent);
+    // }
+
+    &.Gauche + &.Droite {
+      margin-top: calc(10svh);
+    }
+
+    &.Droite + &.Gauche {
+      margin-top: calc(10svh);
+    }
+
     &:not(.Gauche):not(.Droite):not(.hero) {
-      padding: calc($s5 + 10svh) $s0;
+      // padding: calc($s5 + 10svh) $s0;
     }
 
     &:global(:has(+ .Droite)) {
