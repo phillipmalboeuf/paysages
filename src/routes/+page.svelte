@@ -80,11 +80,11 @@
       bottom: calc(100% - 1px);
       left: 0;
       width: 100%;
-      height: 10svh;
+      height: calc(10svh + 2px);
       transform: rotate(0deg);
 
       @media (max-width: $mobile) {
-        height: 5svh;
+        height: calc(5svh + 2px);
       }
 
       path {
@@ -121,10 +121,18 @@
 
     &.Gauche + &.Droite {
       margin-top: calc(10svh);
+
+      @media (max-width: $mobile) {
+        margin-top: calc(5svh);
+      }
     }
 
     &.Droite + &.Gauche {
       margin-top: calc(10svh);
+
+      @media (max-width: $mobile) {
+        margin-top: calc(5svh);
+      }
     }
 
     &:not(.Gauche):not(.Droite):not(.hero) {

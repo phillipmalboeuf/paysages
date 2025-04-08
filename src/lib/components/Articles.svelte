@@ -34,5 +34,9 @@
 <style lang="scss">
   section {
     padding-top: calc($s5 + 10svh);
+
+    @media (max-width: $mobile) {
+      padding-top: calc($s5 + 5svh);
+    }
   }
 </style>
