@@ -25,7 +25,7 @@
 {#if data.page.fields.contenu?.length}
 {#each data.page.fields.contenu as item, i}
 <section class="{item.sys.contentType.sys.id} {(item as Entry<TypeTextSkeleton>).fields.fond} {(item as Entry<TypeTextSkeleton>).fields.alignement}"
-  style:z-index={(item as Entry<TypeTextSkeleton>).fields.alignement ? i + 1 : 0}>
+  style:z-index={(item as Entry<TypeTextSkeleton>).fields.alignement ? i + 1 : undefined}>
   {#if isTypeText(item)}
   <Text {item} first={i === 0} />
   {:else if isTypeListe(item)}
@@ -82,6 +82,7 @@
       width: 100%;
       height: calc(10svh + 2px);
       transform: rotate(0deg);
+      pointer-events: none;
 
       @media (max-width: $mobile) {
         height: calc(5svh + 2px);
@@ -141,8 +142,19 @@
 
     &:global(:has(+ .Droite)) {
       :global(.hero figcaption) {
-        left: auto;
-        right: 0;
+        @media (min-width: $mobile) {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+
+    &:global(:has(+ .Gauche)) {
+      :global(.hero figcaption) {
+        @media (max-width: $mobile) {
+          right: 0;
+          left: auto;
+        }
       }
     }
 
