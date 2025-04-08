@@ -39,8 +39,8 @@
   {/if}
 
   {#if !!(item as Entry<TypeTextSkeleton>).fields.alignement}
-    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
-    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+    <!-- <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg>
+    <svg viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 0L300 50H0V0Z"/></svg> -->
   {/if}
 </section>
 {/each}
@@ -125,6 +125,13 @@
 
     &:not(.Gauche):not(.Droite):not(.hero) {
       padding: calc($s5 + 10svh) $s0;
+    }
+
+    &:global(:has(+ .Droite)) {
+      :global(.hero figcaption) {
+        left: auto;
+        right: 0;
+      }
     }
 
     &.Gauche {

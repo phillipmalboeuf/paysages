@@ -9,7 +9,7 @@
   let { item }: { item: Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> } = $props()
 </script>
 
-<section class="flex flex--gapped" id={item.fields.id}>
+<section class="flex flex--gapped hero" id={item.fields.id}>
   {#if item.fields.titre}
   <div class="col col--12of12 col--mobile--12of12">
     <h2 class="h1">{@html item.fields.titre}</h2>
@@ -34,7 +34,7 @@
 <style lang="scss">
   section {
     overflow: hidden;
-    
+
     figure {
       position: relative;
       width: calc(100% + $s0 * 2);
@@ -49,7 +49,7 @@
         z-index: 3;
         bottom: 0;
         left: 0;
-        width: 100%;
+        width: auto;
         padding: $s0 calc($s0 * 2);
 
         p {
