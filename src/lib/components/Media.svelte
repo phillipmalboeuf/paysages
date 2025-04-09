@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { icons } from '$lib/formatters'
   import type { Asset } from 'contentful'
 
   let {
@@ -54,7 +55,7 @@
     </svg>
 
     {#if media.fields.description}
-    <p>{@html media.fields.description}</p>
+    <p>{@html icons(media.fields.description)}</p>
     {/if}
   </figcaption>
   {/if}

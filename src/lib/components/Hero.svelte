@@ -6,6 +6,8 @@
   import Media from './Media.svelte'
   import Parallax from './Parallax.svelte'
 
+  import { icons } from '$lib/formatters'
+
   let { item }: { item: Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> } = $props()
 </script>
 
@@ -28,7 +30,7 @@
         <label for={item.fields.id + '-caption'}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#F5CDBD"/><path d="M12.0049 6.096C12.6929 6.096 13.2369 6.624 13.2369 7.312C13.2369 8 12.6929 8.528 12.0049 8.528H11.9889C11.3009 8.528 10.7569 8 10.7569 7.312C10.7569 6.624 11.3009 6.096 11.9889 6.096H12.0049ZM10.9489 9.808H13.0609V18H10.9489V9.808Z" fill="black"/></svg>
         </label>
-        <p>{@html item.fields.image.fields.description}</p>
+        <p>{@html icons(item.fields.image.fields.description)}</p>
       </figcaption>
       {/if}
     </figure>

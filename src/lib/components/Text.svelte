@@ -36,6 +36,10 @@
 
 <style lang="scss">
   section {
+
+    h2 {
+      margin-bottom: $s3;
+    }
   }
 </style>
 
