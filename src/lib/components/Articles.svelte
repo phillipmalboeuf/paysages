@@ -8,7 +8,7 @@
 </script>
 
 <section class="padded flex flex--gapped">
-  <h2 class="h1 col col--12of12">Actualités</h2>
+  <h2 class="h0 col col--12of12">Actualités</h2>
 
   {#each articles as article, i}
   {#if i % 4 === 0}

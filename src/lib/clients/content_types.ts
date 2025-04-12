@@ -28,6 +28,23 @@ export function isTypeCarte<Modifiers extends ChainModifiers, Locales extends Lo
     return entry.sys.contentType.sys.id === 'carte'
 }
 
+export interface TypeEventFields {
+    titre?: EntryFieldTypes.Symbol;
+    id: EntryFieldTypes.Symbol;
+    date?: EntryFieldTypes.Date;
+    endroit?: EntryFieldTypes.Text;
+    image?: EntryFieldTypes.AssetLink;
+    focus?: EntryFieldTypes.Object;
+    liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
+}
+
+export type TypeEventSkeleton = EntrySkeletonType<TypeEventFields, "event">;
+export type TypeEvent<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeEventSkeleton, Modifiers, Locales>;
+
+export function isTypeEvent<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeEvent<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'event'
+}
+
 export interface TypeFormulaireFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
@@ -104,9 +121,9 @@ export interface TypeListeFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
-    type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider">;
+    type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider" | "Tableau">;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
-    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeImageFocusedSkeleton | TypeTextSkeleton>>;
+    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeImageFocusedSkeleton | TypeTextSkeleton | TypeLienDeNavigationSkeleton | TypeEventSkeleton>>;
 }
 
 export type TypeListeSkeleton = EntrySkeletonType<TypeListeFields, "liste">;

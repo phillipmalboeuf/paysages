@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeImageFocused, isTypeText } from '$lib/clients/content_types'
+  import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeEvent, isTypeImageFocused, isTypeLienDeNavigation, isTypeText } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
   import emblaCarouselSvelte from 'embla-carousel-svelte'
@@ -7,11 +7,13 @@
   import type { EmblaOptionsType, EmblaPluginType, EmblaCarouselType } from 'embla-carousel'
 
   import Text from './Text.svelte'
+  import Event from './Event.svelte'
   import Rich from './Rich.svelte'
+  import Media from './Media.svelte'
+  import Icon from './Icon.svelte'
 
   import { onMount, onDestroy } from 'svelte'
   import { browser } from '$app/environment'
-  import Media from './Media.svelte';
 
   const options: EmblaOptionsType = {
     loop: true,
@@ -86,19 +88,23 @@
   {:else}
   <ul class="list--nostyle col col--12of12 flex flex--gapped">
     {#each item.fields.items as listItem}
-    <li class="col" class:col--6of12={!!item.fields.type || item.fields.type === 'Colonnes'} class:col--12of12={item.fields.type === 'Accordeon'}>
+    <li class="col" class:col--6of12={!item.fields.type || (item.fields.type === 'Colonnes' && !isTypeEvent(listItem)) || (item.fields.type === 'Tableau' && item.fields.items.length > 6)} class:col--4of12={item.fields.type === 'Colonnes' && isTypeEvent(listItem)} class:col--12of12={item.fields.type === 'Accordeon' || (item.fields.type === 'Tableau' && item.fields.items.length <= 6)}>
       {#if item.fields.type === 'Accordeon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
-        <summary class="flex flex--gapped flex--middle flex--spaced"><h3>{listItem.fields.title}</h3> <span class="h3"></span></summary>
+        <summary class="flex flex--gapped flex--middle flex--spaced"><h2>{listItem.fields.title}</h2> <span class="h3"></span></summary>
         <article><Text item={listItem} noTitle /></article>
         {/if}
       </details>
       {:else}
       {#if isTypeText(listItem)}
       <Text item={listItem} />
+      {:else if isTypeEvent(listItem)}
+      <Event item={listItem} />
       {:else if isTypeImageFocused(listItem)}
       <Media media={listItem.fields.image} />
+      {:else if isTypeLienDeNavigation(listItem)}
+      <a href={listItem.fields.route} class="flex flex--gapped flex--middle">{listItem.fields.titre} <span>Site Web</span> <Icon i="arrow" label="Visiter" /></a>
       {/if}
       {/if}
     </li>
@@ -116,6 +122,19 @@
 
     ul {
       margin: $s5 0;
+
+      li {
+        a {
+          width: 100%;
+          padding-bottom: $s-3;
+          padding-right: 5vw;
+          border-bottom: 1px solid;
+
+          span {
+            margin-left: auto;
+          }
+        }
+      }
     }
 
     details {

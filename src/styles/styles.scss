@@ -525,34 +525,33 @@ table {
 	td,
 	th {
 		font-weight: normal;
-		// border-top: 1px solid rgba($accent, 0.25);
-		// padding: ($s-2) ($s2) ($s-2) 0;
+		border-bottom: 1px solid;
+		padding: ($s-3) ($s2) ($s-3) 0;
 		white-space: pre-line;
 		width: calc(100% / var(--length));
 		vertical-align: top;
 
-		strong:last-child:first-child {
-			font-weight: normal;
-			font-size: $s2;
+		&:last-child {
+			padding-right: 0;
 		}
 	}
 
-	th {
-		border-top: none;
-		text-align: left;
-		border-color: transparent;
-		font-weight: bold;
-		padding: ($s-1) 0 ($s-2);
-	}
+	// th {
+	// 	border-top: none;
+	// 	text-align: left;
+	// 	border-color: transparent;
+	// 	font-weight: bold;
+	// 	padding: ($s-1) 0 ($s-2);
+	// }
 
-	tr {
-		&:first-child:last-child {
-			td,
-			th {
-				border-top: none;
-			}
-		}
-	}
+	// tr {
+	// 	&:first-child:last-child {
+	// 		td,
+	// 		th {
+	// 			border-top: none;
+	// 		}
+	// 	}
+	// }
 
 	td {
 		&:not(:first-child) {
@@ -569,11 +568,11 @@ table {
 	}
 
 	&.table--fixed {
-		table-layout: fixed;
+		// table-layout: fixed;
 
 		td,
 		th {
-			padding-right: 10%;
+			// padding-right: 10%;
 		}
 	}
 }
@@ -747,7 +746,29 @@ dialog {
         $adjust: calc(var(--gap) / #{math.div($number_of_columns, $i)});
         width: calc(#{$width} - var(--gap) + #{$adjust});
        }
+		}
 
+		@for $i from 1 through $number_of_columns {
+			@media (max-width: $tablet_landscape) {
+				&.col--landscape--#{$i}of#{$number_of_columns} {
+					$width:  math.div(100%, $number_of_columns) * $i;
+					$adjust: calc(var(--gap) / #{math.div($number_of_columns, $i)});
+					width: calc(#{$width} - var(--gap) + #{$adjust});
+				}
+			}
+    }
+
+		@for $i from 1 through $number_of_columns {
+			@media (max-width: $tablet_portrait) {
+				&.col--tablet--#{$i}of#{$number_of_columns} {
+					$width:  math.div(100%, $number_of_columns) * $i;
+					$adjust: calc(var(--gap) / #{math.div($number_of_columns, $i)});
+					width: calc(#{$width} - var(--gap) + #{$adjust});
+				}
+			}
+    }
+
+		@for $i from 1 through $number_of_columns {
 			@media (max-width: $mobile) {
 				&.col--mobile--#{$i}of#{$number_of_columns} {
 					$width:  math.div(100%, $number_of_columns) * $i;
@@ -757,10 +778,6 @@ dialog {
 					&:empty {
 						display: none;
 					}
-
-					// & + br {
-					// 	display: none;
-					// }
 				}
 			}
     }

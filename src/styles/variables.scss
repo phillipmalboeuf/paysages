@@ -61,7 +61,7 @@ $base: 16px;
     "minTypeScale": 1.2,
     "maxTypeScale": 1.25,
     "positiveSteps": 8,
-    "negativeSteps": 2,
+    "negativeSteps": 3,
     "prefix": "step-",
     "relativeTo": "viewport-width"
   ));
@@ -82,6 +82,8 @@ $s8: var(--step-8);
 $radius: $s1;
 $max: 1440px;
 
+$tablet_landscape: 1380px;
+$tablet_portrait: 1024px;
 $mobile: 888px;
 
 $number_of_columns: 12;

@@ -79,7 +79,7 @@
 {:else if node.nodeType === 'table-header-cell'}
   <th data-content="{node.content[0]?.content[0]?.value}">{#each node.content as item}{@render n(item)}{/each}</th>
 {:else if node.nodeType === 'table-cell'}
-  <td>{#each node.content as item}{@render n(item)}{/each}</td>
+  <td><div class="flex flex--column flex--tight_gapped">{#each node.content as item}{@render n(item)}{/each}</div></td>
 
 {:else if node.nodeType === 'blockquote'}
   <blockquote>{#each node.content as code}{@render n(code)}{/each}</blockquote>
