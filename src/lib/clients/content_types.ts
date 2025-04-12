@@ -152,6 +152,7 @@ export interface TypeTextFields {
     focus?: EntryFieldTypes.Object<{ focalPoint: { x: number, y: number } }>;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
     alignement?: EntryFieldTypes.Symbol<"Droite" | "Gauche">;
+    grosTitre?: EntryFieldTypes.Boolean;
     corps?: EntryFieldTypes.RichText;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }

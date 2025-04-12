@@ -10,8 +10,8 @@
 
 <section class="flex flex--gapped {item.fields.alignement}" class:first id={item.fields.id}>
   {#if !noTitle}
-  <div class="col col--12of12 col--mobile--12of12">
-    <h2 class="h1">{@html item.fields.title}</h2>
+  <div class="col col--9of12 col--mobile--12of12">
+    <h2 class:h1={!item.fields.grosTitre} class:h0={item.fields.grosTitre}>{@html item.fields.title}</h2>
   </div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}

@@ -60,7 +60,7 @@ $base: 16px;
     "maxFontSize": 20,
     "minTypeScale": 1.2,
     "maxTypeScale": 1.25,
-    "positiveSteps": 5,
+    "positiveSteps": 8,
     "negativeSteps": 2,
     "prefix": "step-",
     "relativeTo": "viewport-width"
@@ -77,8 +77,8 @@ $s3: var(--step-3);
 $s4: var(--step-4);
 $s5: var(--step-5);
 $s6: var(--step-6);
-// $s7: var(--step-7);
-
+$s7: var(--step-7);
+$s8: var(--step-8);
 $radius: $s1;
 $max: 1440px;
 
