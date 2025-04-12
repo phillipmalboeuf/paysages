@@ -3,22 +3,28 @@
   import type { Entry } from 'contentful'
 
   import Media from './Media.svelte'
+  import { formatDate } from '$lib/formatters'
 
-  let { articles }: { articles: Entry<TypeArticleSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>[] } = $props()
+  let { articles, full }: { articles: Entry<TypeArticleSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>[], full?: boolean } = $props()
 </script>
 
 <section class="padded flex flex--gapped">
-  <h2 class="h0 col col--12of12">Actualités</h2>
+  <nav class="col col--12of12 flex flex--gapped flex--bottom">
+    <h2 class="h0 col">Actualités</h2>
+    {#if !full}
+    <a class="col" href="/actualites"><u>Toutes les actualités</u></a>
+    {/if}
+  </nav>
 
-  {#each articles as article, i}
+  {#each (articles.slice(0, full ? articles.length : 4)) as article, i}
   {#if i % 4 === 0}
   <hr class="col col--12of12" />
   {/if}
-  <div class="col col--3of12 col--mobile--6of12 flex flex--column flex--gapped">
+  <article class="col col--3of12 col--mobile--6of12 flex flex--column flex--gapped">
     {#if article.fields.media}
     <Media media={article.fields.media} />
     {/if}
-    <h6>{article.fields.titre}</h6>
+    <p>{article.fields.titre}<br>{formatDate(article.fields.date)}</p>
 
     {#if article.fields.liens?.length}
     <ul class="list--nostyle flex flex--gapped">
@@ -27,16 +33,34 @@
       {/each}
     </ul>
     {/if}
-  </div>
+  </article>
   {/each}
 </section>
 
 <style lang="scss">
   section {
     padding-top: calc($s5 + 10svh);
+    align-items: stretch;
 
     @media (max-width: $mobile) {
       padding-top: calc($s5 + 5svh);
+
+      hr {
+        display: none;
+      }
+    }
+
+    nav {
+      h2 {
+        margin-right: auto;
+      }
+    }
+
+    article {
+      
+      ul {
+        margin-top: auto;
+      }
     }
   }
 </style>

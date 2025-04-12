@@ -19,7 +19,7 @@
 		
 		{@render children()}
 
-		<Articles articles={data.articles.items} />
+		<Articles articles={data.articles.items} full={$page.url.pathname === '/actualites'} />
 	</main>
 	<Footer navigations={data.navigations} />
 </ParaglideJS>

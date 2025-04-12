@@ -104,7 +104,7 @@
       {:else if isTypeImageFocused(listItem)}
       <Media media={listItem.fields.image} />
       {:else if isTypeLienDeNavigation(listItem)}
-      <a href={listItem.fields.route} class="flex flex--gapped flex--middle">{listItem.fields.titre} <span>Site Web</span> <Icon i="arrow" label="Visiter" /></a>
+      <a href={listItem.fields.route} class="flex flex--gapped flex--middle">{listItem.fields.titre} <span>{listItem.fields.cta || 'Site Web'}</span> <Icon i="arrow" label="Visiter" /></a>
       {/if}
       {/if}
     </li>

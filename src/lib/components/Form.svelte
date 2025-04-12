@@ -13,13 +13,13 @@
 </script>
 
 <section class="flex flex--gapped" id={item.fields.id}>
-  <div class="col col--6of12 corps flex flex--column flex--gapped">
-    {#if item.fields.titre}
-    <div class="titre">
-      <h1>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h1>
-    </div>
-    {/if}
+  {#if item.fields.titre}
+  <div class="titre col col--9of12 col--mobile--12of12">
+    <h1 class="h0">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h1>
+  </div>
+  {/if}
 
+  <div class="col col--6of12 corps flex flex--column flex--gapped">
     {#if item.fields.corps}
     <div class="flex flex--column flex--gapped">
       <Rich body={item.fields.corps} />
@@ -62,6 +62,9 @@
 
 <style lang="scss">
   section {
+    .h0 {
+      margin-bottom: $s3;
+    }
   }
 
   form {

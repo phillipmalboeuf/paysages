@@ -108,6 +108,7 @@ export interface TypeLienDeNavigationFields {
     titre: EntryFieldTypes.Symbol;
     route?: EntryFieldTypes.Symbol;
     externe?: EntryFieldTypes.Boolean;
+    cta?: EntryFieldTypes.Symbol;
 }
 
 export type TypeLienDeNavigationSkeleton = EntrySkeletonType<TypeLienDeNavigationFields, "lienDeNavigation">;
