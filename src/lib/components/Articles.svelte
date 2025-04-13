@@ -46,7 +46,7 @@
       padding-top: calc($s5 + 5svh);
 
       hr {
-        display: none;
+        // display: none;
       }
     }
 
