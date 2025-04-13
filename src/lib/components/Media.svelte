@@ -79,7 +79,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color: $jaune;
+      background-color: var(--dark, $jaune);
       padding: 0 $s-1 $s-1;
       transition: transform 0.333s, opacity 0.333s;
       transform: translateY(100%);
@@ -95,7 +95,7 @@
         transition: height 0.333s;
 
         path {
-          fill: $jaune !important;
+          fill: var(--dark, $jaune) !important;
         }
       }
     }

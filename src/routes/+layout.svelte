@@ -32,5 +32,21 @@
 		:global(> section:first-of-type > section:not(.Gauche):not(.Droite)) {
 			// padding-top: 100px;
 		}
+
+		&.corail {
+			--dark: #{$corail};
+		}
+		&.jaune {
+			--dark: #{$jaune};
+		}
+		&.bleu {
+			--dark: #{$bleu};
+		}
+		&.vert {
+			--dark: #{$vert};
+		}
+		&.gris {
+			--dark: #{$gris};
+		}
 	}
 </style>
