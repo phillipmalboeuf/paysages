@@ -54,7 +54,7 @@
       figcaption {
         position: absolute;
         z-index: 30;
-        bottom: 0;
+        bottom: calc($s-1 * -1);
         left: 0;
         width: auto;
         
