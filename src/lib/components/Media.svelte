@@ -86,6 +86,10 @@
       opacity: 0;
       // mix-blend-mode: screen;
 
+      :global(.Foncé) & {
+        background-color: var(--light, $jaune-pale);
+      }
+
       svg {
         position: absolute;
         bottom: calc(100% - 1px);
@@ -96,6 +100,10 @@
 
         path {
           fill: var(--dark, $jaune) !important;
+
+          :global(.Foncé) & {
+            fill: var(--light, $jaune-pale) !important;
+          }
         }
       }
     }

@@ -35,18 +35,23 @@
 
 		&.corail {
 			--dark: #{$corail};
+			--light: #{$corail-pale};
 		}
 		&.jaune {
 			--dark: #{$jaune};
+			--light: #{$jaune-pale};
 		}
 		&.bleu {
 			--dark: #{$bleu};
+			--light: #{$bleu-pale};
 		}
 		&.vert {
 			--dark: #{$vert};
+			--light: #{$vert-pale};
 		}
 		&.gris {
 			--dark: #{$gris};
+			--light: #{$gris-pale};
 		}
 	}
 </style>
