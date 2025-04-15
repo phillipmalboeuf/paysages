@@ -8,7 +8,7 @@
   let { articles, full }: { articles: Entry<TypeArticleSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>[], full?: boolean } = $props()
 </script>
 
-<section class="padded flex flex--gapped">
+<section class="padded flex flex--gapped" class:limited={!full}>
   <nav class="col col--12of12 flex flex--gapped flex--bottom">
     <h2 class="h0 col">Actualités</h2>
     {#if !full}
@@ -60,6 +60,12 @@
       
       ul {
         margin-top: auto;
+      }
+    }
+
+    &.limited { 
+      article:nth-child(n + 5) {
+        display: none;
       }
     }
   }

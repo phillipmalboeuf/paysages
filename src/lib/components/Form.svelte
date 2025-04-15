@@ -92,6 +92,8 @@
 
     button {
       margin-top: $s0;
+      font-weight: 600;
+      padding: calc($s0 * 0.25) 0;
     }
   }
 </style>
