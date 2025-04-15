@@ -64,8 +64,10 @@
     }
 
     &.limited { 
-      article:nth-child(n + 5) {
-        display: none;
+      @media (max-width: $mobile) {
+        article:nth-child(n + 5) {
+          display: none;
+        }
       }
     }
   }
