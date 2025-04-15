@@ -19,7 +19,7 @@
   </div>
   {/if}
 
-  <div class="col col--6of12 corps flex flex--column flex--gapped">
+  <div class="col col--6of12 col--mobile--12of12 corps flex flex--column flex--gapped">
     {#if item.fields.corps}
     <div class="flex flex--column flex--gapped">
       <Rich body={item.fields.corps} />
@@ -27,7 +27,7 @@
     {/if}
   </div>
 
-  <div class="col col--6of12">
+  <div class="col col--6of12 col--mobile--12of12">
     <form class="form flex flex--gapped" action={item.fields.action} method="POST" use:enhance>
       {#if item.fields.champs}
         {#each item.fields.champs as champ}
