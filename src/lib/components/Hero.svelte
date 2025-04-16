@@ -23,8 +23,8 @@
       <Parallax>
         <Media media={item.fields.image} noCaption focalPoint={item.fields.focus?.focalPoint as { x: number, y: number }} />
       </Parallax>
-      {#if item.fields.image.fields.description}
 
+      {#if item.fields.image.fields.description}
       <figcaption>
         <input type="checkbox" id={item.fields.id + '-caption'}>
         <label for={item.fields.id + '-caption'}>
@@ -61,6 +61,7 @@
         p {
           max-width: none;
           padding: $s0 calc($s0 * 2);
+          font-weight: 600;
         }
 
         @media (max-width: $mobile) {
