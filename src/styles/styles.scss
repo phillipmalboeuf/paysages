@@ -225,6 +225,14 @@ a {
 	// * {
 	// 	pointer-events: none;
 	// }
+
+	&:has(> u) {
+		font-weight: 600;
+		
+		u {
+			text-underline-offset: 0.5em;
+		}
+	}
 }
 
 a:hover {
