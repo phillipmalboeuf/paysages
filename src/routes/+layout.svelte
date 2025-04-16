@@ -8,18 +8,18 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Articles from '$lib/components/Articles.svelte';
 
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	
 	let { children, data } = $props();
 </script>
 
 <ParaglideJS {i18n}>
 	<Header navigations={data.navigations} />
-	<main class="{$page.data.page?.fields.couleur}">
+	<main class="{page.route.id?.replaceAll('/', '-').replaceAll('[', '').replaceAll(']', '')} {page.url.pathname.replaceAll('/', '-')} {page.data.page?.fields.couleur}">
 		
 		{@render children()}
 
-		<Articles articles={data.articles.items} full={$page.url.pathname === '/actualites'} />
+		<Articles articles={data.articles.items} full={page.url.pathname === '/actualites'} />
 	</main>
 	<Footer navigations={data.navigations} />
 </ParaglideJS>

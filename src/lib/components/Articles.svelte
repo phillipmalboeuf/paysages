@@ -42,6 +42,10 @@
     padding-top: calc($s5 + 10svh);
     align-items: stretch;
 
+    :global(.-contact) & {
+      display: none;
+    }
+
     @media (max-width: $mobile) {
       padding-top: calc($s5 + 5svh);
 
