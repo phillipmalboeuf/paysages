@@ -122,6 +122,7 @@ export interface TypeListeFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
+    sousTitre?: EntryFieldTypes.Symbol;
     type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider" | "Tableau">;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
     items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeImageFocusedSkeleton | TypeTextSkeleton | TypeLienDeNavigationSkeleton | TypeEventSkeleton>>;

@@ -55,6 +55,12 @@
   </div>
   {/if}
 
+  {#if item.fields.sousTitre}
+  <div class="col col--12of12 col--mobile--12of12 sousTitre">
+    <h4>{@html item.fields.sousTitre}</h4>
+  </div>
+  {/if}
+
   {#if item.fields.items?.length}
   {#if item.fields.type === 'Slider'}
   <div class="embla" use:emblaCarouselSvelte={{ options: { ...options }, plugins, }} onemblaInit={e => embla = e.detail}>
@@ -138,6 +144,14 @@
             margin-left: auto;
           }
         }
+      }
+    }
+
+    .sousTitre {
+      margin-top: $s4;
+      
+      & + ul {
+        margin-top: 0;
       }
     }
 
