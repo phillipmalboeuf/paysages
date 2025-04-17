@@ -197,7 +197,7 @@
 
         $width: calc(100% / var(--slide-columns));
         $adjust: calc(var(--gap) / var(--slide-columns));
-        --slide-width: calc(#{$width} - var(--gap) + #{$adjust});
+        --slide-width: calc(#{$width} - (var(--gap) * 2) + #{$adjust});
 
         flex: 0 0 var(--slide-width);
         min-width: 0;
@@ -220,17 +220,33 @@
 
     &#ligne-du-temps {
       li {
-        :global(h2) {
-          
-          &:after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 15svh;
-            margin-top: $s0;
-            background-color: $noir;
-          }
+        border-left: 1px solid;
+        padding-left: $s-2;
+
+        :global(> section) {
+          height: 100%;
         }
+
+        :global(> section .corps) {
+          margin-top: auto;
+        }
+
+        :global(> section .col--6of12:empty) {
+          display: none;
+        }
+
+
+        // :global(h2) {
+          
+        //   &:after {
+        //     content: '';
+        //     display: block;
+        //     width: 1px;
+        //     height: 15svh;
+        //     margin-top: $s0;
+        //     background-color: $noir;
+        //   }
+        // }
       }
     }
   }
