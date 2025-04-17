@@ -11,6 +11,8 @@
 </script>
 
 <article class="flex flex--gapped flex--column" id={item.fields.id}>
+  <hr>
+  
   <h3>{@html item.fields.titre}</h3>
 
   {#if item.fields.image}
@@ -38,6 +40,14 @@
 
 <style lang="scss">
   article {
+    hr {
+      margin-top: $s4;
+
+      @media (min-width: $mobile) {
+        display: none;
+      }
+    }
+
 
     // h2 {
     //   margin-bottom: $s3;
