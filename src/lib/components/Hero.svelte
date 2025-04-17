@@ -14,7 +14,7 @@
 <section class="flex flex--gapped hero" id={item.fields.id}>
   {#if item.fields.titre}
   <div class="col col--12of12 col--mobile--12of12">
-    <h2 class="h1">{@html item.fields.titre}</h2>
+    <h2 class="h1">{@html item.fields.titre.replaceAll('Capitale-Nationale', '<span class="nobr">Capitale-Nationale</span>')}</h2>
   </div>
   {/if}
   {#if item.fields.image}

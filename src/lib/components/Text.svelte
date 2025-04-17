@@ -11,7 +11,7 @@
 <section class="flex flex--gapped flex--spaced {item.fields.alignement} paragraph--{item.fields.alignementParagraph} {item.fields.image ? 'has-image' : 'has-no-image'}" class:first id={item.fields.id}>
   {#if !noTitle && item.fields.title}
   <div class="col col--9of12 col--mobile--12of12">
-    <h2 class:h1={!item.fields.grosTitre} class:h0={item.fields.grosTitre}>{@html item.fields.title}</h2>
+    <h2 class:h1={!item.fields.grosTitre} class:h0={item.fields.grosTitre}>{@html item.fields.title.replaceAll('Capitale-Nationale', '<span class="nobr">Capitale-Nationale</span>')}</h2>
   </div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}
