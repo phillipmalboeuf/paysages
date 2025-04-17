@@ -107,11 +107,9 @@
             opacity: 1;
           }
 
-          @media (max-width: $mobile) {
-            &:last-child {
-              opacity: 0;
-              transform: translateX(-100%);
-            }
+          &:last-child {
+            opacity: 0;
+            transform: translateX(-100%);
           }
         }
       }

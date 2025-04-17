@@ -66,9 +66,9 @@
     svg,
     :global(.parallax) {
       position: absolute;
-      bottom: $s1;
-      left: $s1;
-      width: calc(100% - $s1 * 2);
+      bottom: $s0;
+      left: $s0;
+      width: calc(100% - $s0 * 2);
       aspect-ratio: 1432/700;
       // padding: $s1;
       // border: none;
@@ -80,9 +80,9 @@
 
     svg {
       transform: scale(1.0);
-      bottom: calc($s1 - 1px);
-      left: calc($s1 - 1px);
-      width: calc((100% - $s1 * 2) + 2px);
+      bottom: calc($s0 - 1px);
+      left: calc($s0 - 1px);
+      width: calc((100% - $s0 * 2) + 2px);
       // padding: $s1;
       // fill: $jaune;
       // background-color: $jaune;
