@@ -171,6 +171,26 @@
 
       article {
         padding: $s0 0;
+
+        :global(table) {
+          max-width: 50%;
+          margin: 0 auto;
+
+          @media (max-width: $mobile) {
+            max-width: 100%;
+          
+            :global(tr) {
+              display: flex;
+              flex-direction: column;
+            }
+
+            :global(th),
+            :global(td) {
+              width: 100%;
+              margin-bottom: $s1;
+            }
+          }
+        }
       }
 
       &[open] {
