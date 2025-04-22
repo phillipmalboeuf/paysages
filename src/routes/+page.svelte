@@ -54,6 +54,17 @@
     &.Blanc {
       background-color: var(--fond);
       --fond: #{$blanc};
+
+      &:has(+ :global(.Blanc.carte)) {
+        padding-bottom: 0;
+      }
+
+      & + &.Blanc.carte {
+        
+        :global(section.map) {
+          padding-bottom: $s4;
+        }
+      }
     }
     
     &.Foncé {

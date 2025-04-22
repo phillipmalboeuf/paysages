@@ -19,7 +19,7 @@
   }, 1000)
 }} />
 
-<section class="flex flex--gapped" id={item.fields.id}>
+<section class="flex flex--gapped map" id={item.fields.id}>
   {#if !noTitle}
   <div class="col col--12of12 col--mobile--12of12">
     <h2 class="h1">{@html item.fields.titre}</h2>

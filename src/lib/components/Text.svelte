@@ -79,6 +79,38 @@
         }
       }
     }
+
+    &#appel-de-projets-triennal {
+      .corps {
+        :global(table) {
+          // margin-bottom: calc($s3 * -1);
+          width: 100%;
+
+          @media (max-width: $tablet_landscape) {
+            width: 200%;
+          }
+
+          @media (max-width: $mobile) {
+            width: 100%;
+
+            :global(tr) {
+              display: flex;
+              flex-direction: column;
+              margin-top: $s0;
+            }
+
+            :global(tr + tr) {
+              margin-top: $s2;
+            }
+
+            :global(th),
+            :global(td) {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
   }
 </style>
 
