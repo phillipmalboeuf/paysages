@@ -69,6 +69,11 @@
 
   form {
 
+    @media (min-width: $mobile) {
+      padding: 0 $s3;
+      margin-top: calc($s-3 * -1);
+    }
+
     .form-field {
       // width: 100%;
 
