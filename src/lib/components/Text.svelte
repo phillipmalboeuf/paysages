@@ -80,7 +80,7 @@
       }
     }
 
-    &#appel-de-projets-triennal {
+    &#appel-de-projets {
       .corps {
         :global(table) {
           // margin-bottom: calc($s3 * -1);
