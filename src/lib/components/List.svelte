@@ -269,5 +269,29 @@
         // }
       }
     }
+
+    &#formations {
+
+      ul {
+        gap: 0;
+      }
+      
+      summary {
+        h2 {
+          font-size: $s2;
+        }
+      }
+
+      :global(table tr:last-child td) {
+        border-bottom: none;
+        // padding-bottom: 0;
+
+        :global(strong) {
+          font-size: $s1;
+          line-height: 1.1;
+        }
+      }
+
+    }
   }
 </style>
