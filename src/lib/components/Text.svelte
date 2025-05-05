@@ -8,7 +8,7 @@
   let { item, first, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean } = $props()
 </script>
 
-<section class="flex flex--gapped flex--spaced {item.fields.alignement} paragraph--{item.fields.alignementParagraph} {item.fields.image ? 'has-image' : 'has-no-image'}" class:first id={item.fields.id}>
+<section class="flex flex--gapped flex--middle flex--spaced {item.fields.alignement} paragraph--{item.fields.alignementParagraph} {item.fields.image ? 'has-image' : 'has-no-image'}" class:first id={item.fields.id}>
   {#if !noTitle && item.fields.title}
   <div class="col col--9of12 col--mobile--12of12">
     <h2 class:h1={!item.fields.grosTitre} class:h0={item.fields.grosTitre}>{@html item.fields.title.replaceAll('Capitale-Nationale', '<span class="nobr">Capitale-Nationale</span>')}</h2>
@@ -45,31 +45,31 @@
     }
 
     &.has-image {
-      @media (min-width: $mobile) {
-        &.Gauche.paragraph--Droite {
-          .media {
-            margin-top: 10svh;
-          }
-        }
+      // @media (min-width: $mobile) {
+      //   &.Gauche.paragraph--Droite {
+      //     .media {
+      //       margin-top: 10svh;
+      //     }
+      //   }
 
-        &.Gauche:not(.paragraph--Droite) {
-          .corps {
-            margin-top: 10svh;
-          }
-        }
+      //   &.Gauche:not(.paragraph--Droite) {
+      //     .corps {
+      //       margin-top: 10svh;
+      //     }
+      //   }
 
-        &.Droite:not(.paragraph--Droite) {
-          .media {
-            margin-top: 10svh;
-          }
-        }
+      //   &.Droite:not(.paragraph--Droite) {
+      //     .media {
+      //       margin-top: 10svh;
+      //     }
+      //   }
 
-        &.Droite.paragraph--Droite {
-          .corps {
-            margin-top: 10svh;
-          }
-        }
-      }
+      //   &.Droite.paragraph--Droite {
+      //     .corps {
+      //       margin-top: 10svh;
+      //     }
+      //   }
+      // }
     }
 
     @media (min-width: $mobile) {
