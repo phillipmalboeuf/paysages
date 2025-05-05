@@ -29,7 +29,7 @@
   {/if}
   {#if item.fields.image}
   <div class="col col--6of12 col--mobile--12of12 media">
-    <Media media={item.fields.image} />
+    <Media media={item.fields.image} ar={4/6} />
   </div>
   {:else}
   <div class="col col--6of12"></div>
