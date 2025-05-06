@@ -7,20 +7,26 @@
   const { navigations }: { navigations: {[id: string]: Entry<TypeNavigationSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>} } = $props()
 
   let scrollY = $state(0)
+  let lastScrollY = 0
+  let scrolled = $derived(scrollY > lastScrollY)
   let menuOpen = $state(false)
 
   $effect(() => {
     document.documentElement.classList.toggle('noscroll', menuOpen)
   })
 
+  function onScroll() {
+    lastScrollY = scrollY < 0 ? 0 : scrollY
+  }
+
   function closeMenu() {
     menuOpen = false
   }
 </script>
 
-<svelte:window bind:scrollY />
+<svelte:window bind:scrollY onscroll={onScroll} />
 
-<header class:scrolled={scrollY > 100} class="padded flex flex--middle flex--spaced">
+<header class:scrolled={scrollY > 100} class:hide={scrolled} class="padded flex flex--middle flex--spaced">
   <a href="/" class="flex flex--middle flex--thick_gapped logo" onclick={closeMenu}>
     <Icon label="Accueil" i="logo" />
     <Icon label="Paysages Capitale-Nationale" i="logotype" />
@@ -56,6 +62,11 @@
     width: 100%;
     z-index: 100;
     pointer-events: none;
+    transition: transform 0.666s;
+
+    &.hide {
+      transform: translateY(-100%);
+    }
 
     a,
     button {

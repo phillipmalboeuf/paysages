@@ -6,6 +6,7 @@
   import Parallax from './Parallax.svelte'
 
   let ready = $state(false);
+  let section: HTMLElement;
 
   let {
     image,
@@ -21,11 +22,23 @@
   } = $props()
 
   onMount(() => {
-    ready = true;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        ready = entry.isIntersecting
+      })
+    }, {
+      threshold: 0.1
+    })
+
+    if (section) {
+      observer.observe(section)
+    }
+
+    return () => observer.disconnect();
   });
 </script>
 
-<section class:ready>
+<section bind:this={section} class:ready>
   {#if image}
   <Parallax>
     <Media noCaption ar={700/1432} media={image} focalPoint={focus?.focalPoint as { x: number, y: number }} />
