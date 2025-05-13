@@ -282,6 +282,12 @@
 
       ul {
         gap: 0;
+
+        li {
+          :global(.has-no-image > div) {
+            width: 100%;
+          }
+        }
       }
       
       summary {
