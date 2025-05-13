@@ -64,6 +64,11 @@
           font-weight: 600;
         }
 
+        @media (min-width: $mobile) {
+          opacity: 0;
+          transition: opacity 666ms;
+        }
+
         @media (max-width: $mobile) {
           z-index: initial;
           transition: transform 0.666s;
@@ -73,6 +78,14 @@
           &:has(> input:checked) {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+      }
+
+      &:hover {
+        @media (min-width: $mobile) {
+          figcaption {
+            opacity: 1;
           }
         }
       }
