@@ -120,6 +120,10 @@
 
     &:not(.hero) {
       padding: $s5 $s0;
+
+      @media (min-width: $tablet_landscape) {
+        padding: $s5 $s2;
+      }
     }
 
     &:first-child {

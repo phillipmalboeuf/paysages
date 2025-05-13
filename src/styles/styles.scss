@@ -655,9 +655,9 @@ dialog {
 .padded {
   padding: $s0;
 
-	// @media (max-width: $mobile) {
-	// 	padding: $s0;
-	// }
+	@media (min-width: $tablet_landscape) {
+		padding: $s2;
+	}
 }
 
 	.padded--tight {

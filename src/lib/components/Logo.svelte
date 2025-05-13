@@ -63,11 +63,15 @@
     position: relative;
     z-index: 4;
     min-height: 100vh;
+    width: 100%;
     background-color: $jaune;
     // scroll-timeline: --scrollTimeline y;
 
-    @media (max-width: $mobile) {
+    aspect-ratio: 1432/800;
+
+    @media (max-width: $tablet_portrait) {
       min-height: 50svh;
+      aspect-ratio: 1432/1000;
     }
 
     :global(.corail) & { background-color: $corail; }
@@ -85,6 +89,12 @@
       aspect-ratio: 1432/700;
       // padding: $s1;
       // border: none;
+
+      @media (min-width: $tablet_landscape) {
+        bottom: $s2;
+        left: $s2;
+        width: calc(100% - $s2 * 2);
+      }
     }
 
     :global(.parallax) {
@@ -100,6 +110,11 @@
       // fill: $jaune;
       // background-color: $jaune;
 
+      @media (min-width: $tablet_landscape) {
+        bottom: calc($s2 - 1px);
+        left: calc($s2 - 1px);
+        width: calc((100% - $s2 * 2) + 2px);
+      }
 
       mask {
         path[fill="black"] {

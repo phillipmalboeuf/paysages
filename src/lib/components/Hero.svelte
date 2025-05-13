@@ -62,6 +62,10 @@
           max-width: none;
           padding: $s0 calc($s0 * 2);
           font-weight: 600;
+
+          @media (min-width: $tablet_landscape) {
+            padding: $s0 calc($s2 * 2);
+          }
         }
 
         @media (min-width: $mobile) {

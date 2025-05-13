@@ -162,6 +162,10 @@
         cursor: pointer;
         padding: $s0 0;
 
+        @media (min-width: $tablet_landscape) {
+          padding: $s2 0;
+        }
+
         span {
           &:before {
             content: '+';
@@ -171,6 +175,10 @@
 
       article {
         padding: $s0 0;
+
+        @media (min-width: $tablet_landscape) {
+          padding: $s2 0;
+        }
 
         :global(table) {
           max-width: 50%;
