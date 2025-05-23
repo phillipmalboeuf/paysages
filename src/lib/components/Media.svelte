@@ -85,6 +85,7 @@
       transform: translateY(100%);
       opacity: 0;
       // mix-blend-mode: screen;
+      font-size: $s-1;
 
       :global(.Foncé) & {
         background-color: var(--light, $jaune-pale);
