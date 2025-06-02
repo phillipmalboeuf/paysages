@@ -278,7 +278,8 @@
       }
     }
 
-    &#formations {
+    &#formations,
+    &#partenaires-contributeurs-MRC {
 
       ul {
         gap: 0;
