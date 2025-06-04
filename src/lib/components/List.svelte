@@ -279,7 +279,8 @@
     }
 
     &#formations,
-    &#partenaires-contributeurs-MRC {
+    &#partenaires-contributeurs-MRC,
+    &#territoire {
 
       ul {
         gap: 0;
