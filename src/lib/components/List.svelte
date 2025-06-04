@@ -181,8 +181,8 @@
         }
 
         :global(table) {
-          max-width: 50%;
-          margin: 0 auto;
+          // max-width: 50%;
+          // margin: 0 auto;
 
           @media (max-width: $mobile) {
             max-width: 100%;
