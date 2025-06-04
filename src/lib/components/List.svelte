@@ -70,11 +70,15 @@
         ? 3
         : isTypeArticle(listItem)
         ? 3
+        : isTypeEvent(listItem)
+        ? 3
         : isTypeImageFocused(listItem)
         ? 3
         : 1}>
         {#if isTypeText(listItem)}
           <Text item={listItem} />
+        {:else if isTypeEvent(listItem)}
+        <Event item={listItem} />
         {:else if isTypeImageFocused(listItem)}
           <Media media={listItem.fields.image} />
         {/if}
