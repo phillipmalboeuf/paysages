@@ -112,7 +112,7 @@
       {:else if isTypeEvent(listItem)}
       <Event item={listItem} />
       {:else if isTypeImageFocused(listItem)}
-      <Media media={listItem.fields.image} />
+      <Media media={listItem.fields.image} ar={4/6} />
       {:else if isTypeLienDeNavigation(listItem)}
       <a href={listItem.fields.route} class="flex flex--gapped flex--middle">
         <div class="col col--8of12">{listItem.fields.titre}</div>

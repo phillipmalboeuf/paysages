@@ -17,7 +17,7 @@
 
   {#if item.fields.image}
   <div class="media">
-    <Media media={item.fields.image} />
+    <Media media={item.fields.image} ar={4/6} />
   </div>
   {/if}
 
