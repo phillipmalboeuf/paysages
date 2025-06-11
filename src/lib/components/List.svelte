@@ -116,7 +116,7 @@
       {:else if isTypeLienDeNavigation(listItem)}
       <a href={listItem.fields.route} class="flex flex--gapped flex--middle">
         <div class="col col--8of12">{listItem.fields.titre}</div>
-        <span>{@html listItem.fields.cta || 'Site&nbsp;Web'}</span> <Icon i="arrow" label="Visiter" />
+        <span>{@html listItem.fields.cta || 'Consulter'}</span> <Icon i="arrow" label={undefined} />
       </a>
       {/if}
       {/if}
