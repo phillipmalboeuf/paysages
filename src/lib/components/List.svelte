@@ -98,7 +98,7 @@
   {:else}
   <ul class="list--nostyle col col--12of12 flex flex--gapped">
     {#each item.fields.items as listItem}
-    <li class="col" class:col--6of12={!item.fields.type || (item.fields.type === 'Colonnes' && !isTypeEvent(listItem)) || (item.fields.type === 'Tableau' && item.fields.items.length > 6)} class:col--4of12={item.fields.type === 'Colonnes' && isTypeEvent(listItem)} class:col--mobile--12of12={(item.fields.type === 'Colonnes' && isTypeEvent(listItem)) || (item.fields.type === 'Tableau' && item.fields.items.length > 6)} class:col--12of12={item.fields.type === 'Accordeon' || (item.fields.type === 'Tableau' && item.fields.items.length <= 6)}>
+    <li class="col" class:col--6of12={!item.fields.type || (item.fields.type === 'Colonnes' && !isTypeEvent(listItem))} class:col--4of12={item.fields.type === 'Colonnes' && isTypeEvent(listItem)} class:col--mobile--12of12={(item.fields.type === 'Colonnes' && isTypeEvent(listItem)) || (item.fields.type === 'Tableau' && item.fields.items.length > 6)} class:col--12of12={item.fields.type === 'Accordeon' || (item.fields.type === 'Tableau')}>
       {#if item.fields.type === 'Accordeon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
