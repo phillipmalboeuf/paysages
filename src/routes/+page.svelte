@@ -62,6 +62,7 @@
       & + &.Blanc.carte {
         
         :global(section.map) {
+          padding-top: $s4;
           padding-bottom: $s4;
         }
       }
