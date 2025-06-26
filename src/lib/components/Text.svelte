@@ -44,6 +44,12 @@
       margin-bottom: $s2;
     }
 
+    ul {
+      li {
+        font-size: $s-1;
+      }
+    }
+
     &.has-image {
       // @media (min-width: $mobile) {
       //   &.Gauche.paragraph--Droite {
