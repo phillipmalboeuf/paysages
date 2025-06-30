@@ -61,6 +61,7 @@
         p {
           max-width: none;
           padding: $s0 calc($s0 * 2);
+          font-size: $s-1;
           font-weight: 600;
 
           @media (min-width: $tablet_landscape) {
