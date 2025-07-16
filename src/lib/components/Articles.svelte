@@ -65,6 +65,11 @@
       ul {
         margin-top: auto;
       }
+
+      :global(img) {
+        min-height: 20vh;
+        object-fit: contain;
+      }
     }
 
     &.limited { 
