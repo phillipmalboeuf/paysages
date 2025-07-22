@@ -22,7 +22,7 @@
   {/if}
   <article class="col col--3of12 col--mobile--6of12 flex flex--column flex--gapped">
     {#if article.fields.media}
-    <Media media={article.fields.media} />
+    <Media media={article.fields.media} ar={1/1.25} contain={article.fields.mediaFormat === 'Contain'} />
     {/if}
     <p>{article.fields.titre}<br>{formatDate(article.fields.date)}</p>
 

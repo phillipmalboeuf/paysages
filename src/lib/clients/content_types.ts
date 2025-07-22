@@ -5,6 +5,7 @@ export interface TypeArticleFields {
     id?: EntryFieldTypes.Symbol;
     date?: EntryFieldTypes.Date;
     media?: EntryFieldTypes.AssetLink;
+    mediaFormat?: EntryFieldTypes.Symbol<"Contain" | "Cover">;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }
 
@@ -18,6 +19,7 @@ export function isTypeArticle<Modifiers extends ChainModifiers, Locales extends 
 export interface TypeCarteFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
+    fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
     googleMapId: EntryFieldTypes.Symbol;
 }
 
@@ -125,7 +127,8 @@ export interface TypeListeFields {
     sousTitre?: EntryFieldTypes.Symbol;
     type?: EntryFieldTypes.Symbol<"Accordeon" | "Colonnes" | "Slider" | "Tableau">;
     fond?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Léger">;
-    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeImageFocusedSkeleton | TypeTextSkeleton | TypeLienDeNavigationSkeleton | TypeEventSkeleton>>;
+    alignement?: EntryFieldTypes.Symbol<"Droite" | "Gauche">;
+    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeEventSkeleton | TypeImageFocusedSkeleton | TypeLienDeNavigationSkeleton | TypeTextSkeleton>>;
 }
 
 export type TypeListeSkeleton = EntrySkeletonType<TypeListeFields, "liste">;
